@@ -10,6 +10,11 @@ addArr = []
 fixDict = {
     '浦东新区竹园小学（长岛校区）': '浦东新区竹园小学（沪东校区）',
     '闵行区知新村': '闵行区浦江镇知新村',
+    '闵行区普联路150弄': '闵行区浦连路150弄',
+    '浦东新区南码头东三街35弄': '浦东新区南码头路街道东三街35弄',
+    '青浦区崧润路德康雅苑': '青浦区崧润路49弄德康雅苑',
+    '虹口区广灵二路商业二村': '虹口区商业二村',
+    '徐汇区田林4村': '徐汇区田林四村',
 }
 
 # Parse addresses from txt
@@ -24,9 +29,10 @@ for date in dateArr:
         matchArr = re.findall(r'于(.*?)[。，]', line, re.M)
         for addStr in matchArr:
             addCount += 1
-            print('<li>' + str(addCount) + '. ' + addStr + '</li>')
+            # Correct wrong address and typo
             if addStr in fixDict:
                 addStr = fixDict[addStr]
+            print('<li>' + str(addCount) + '. ' + addStr + '</li>')
             if addStr not in addArr:
                 addArr.append(addStr)
 
