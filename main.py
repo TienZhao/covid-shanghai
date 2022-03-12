@@ -2,7 +2,7 @@ import re
 # -*- coding: utf-8 -*-
 
 # Read start_date.txt to end_date-1.txt
-dateArr = range(20220306, 20220311)
+dateArr = range(20220306, 20220312)
 addCount = 0
 addArr = []
 
@@ -35,6 +35,7 @@ for date in dateArr:
             print('<li>' + str(addCount) + '. ' + addStr + '</li>')
             if addStr not in addArr:
                 addArr.append(addStr)
+addArr.reverse()
 
 # Update demo.html with new address array
 with open('demo.html', 'r+', encoding='utf-8') as f:
