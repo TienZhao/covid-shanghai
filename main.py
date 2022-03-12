@@ -2,7 +2,7 @@ import re
 # -*- coding: utf-8 -*-
 
 # Read start_date.txt to end_date-1.txt
-dateArr = range(20220306, 20220312)
+dateArr = range(20220311, 20220305, -1)
 addCount = 0
 addArr = []
 
@@ -15,6 +15,8 @@ fixDict = {
     '青浦区崧润路德康雅苑': '青浦区崧润路49弄德康雅苑',
     '虹口区广灵二路商业二村': '虹口区商业二村',
     '徐汇区田林4村': '徐汇区田林四村',
+    '徐汇区宜山路上海精工工地宿舍': '徐汇区宜山路上海建工工地宿舍',
+    '嘉定区陇南路嘉涛路停车场': '嘉定区嘉涛路与陇南路交叉口'
 }
 
 # Parse addresses from txt
@@ -35,7 +37,6 @@ for date in dateArr:
             print('<li>' + str(addCount) + '. ' + addStr + '</li>')
             if addStr not in addArr:
                 addArr.append(addStr)
-addArr.reverse()
 
 # Update demo.html with new address array
 with open('demo.html', 'r+', encoding='utf-8') as f:
