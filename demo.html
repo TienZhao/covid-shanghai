@@ -20,8 +20,8 @@
        #result{
            position: fixed;
            top: 10px;
-           right: 10px;
-           width: 350px;
+           left: 10px;
+           width: auto;
            height: auto;
            line-height: 30px;
            text-align: center;
@@ -68,12 +68,25 @@
       .btn:hover{
           cursor: pointer;
       }
+      #resource{
+           position: fixed;
+           bottom: 0px;
+           width: 100%;
+           height: 15px;
+           line-height: 30px;
+           text-align: left;
+           background: white;
+           z-index: 99;
+       }
     </style>
 </head>
 <body>
     <div id='container'></div>
     <div id='result'>
         <button onclick='bdGEO()' class='btn'>开始标记</button>
+    </div>
+    <div id='resource'>
+        <a href="https://view.inews.qq.com/a/20220312A01BB900" target="_blank">上海3月11日新增5例本土新冠肺炎确诊病例、78例本土无症状感染者</a>
     </div>
     <script>
         var map = new BMapGL.Map('container');
@@ -107,7 +120,9 @@
             myGeo.getPoint(add, function(point){
                 if (point) {
                     var address = new BMapGL.Point(point.lng, point.lat);
-                    addMarker(address,new BMapGL.Label(index+":"+add,{offset:new BMapGL.Size(10,-10)}));
+                    var label = new BMapGL.Label(index+":"+add,{offset:new BMapGL.Size(10,-10)});
+                    label.setStyle({color : "#8bc02b",});   // Set border green
+                    addMarker(address,label);
                 }
             }, "上海市");
         }
