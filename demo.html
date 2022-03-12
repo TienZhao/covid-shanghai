@@ -72,7 +72,6 @@
            position: fixed;
            bottom: 0px;
            width: 100%;
-           height: 20px;
            line-height: 20px;
           font-size: 14px
            text-align: left;
@@ -121,7 +120,7 @@
                 if (point) {
                     var address = new BMapGL.Point(point.lng, point.lat);
                     var label = new BMapGL.Label(index+":"+add,{offset:new BMapGL.Size(10,-10)});
-                    label.setStyle({border-color : "#8bc02b"});   // Set border green
+                    label.setStyle({"border-color" : "#8bc02b"});   // Set border green
                     addMarker(address,label);
                 }
             }, "上海市");
