@@ -19,7 +19,8 @@ fixDict = {
     '徐汇区宜山路上海精工工地宿舍': '徐汇区宜山路徐家汇中心工地宿舍',
     '嘉定区陇南路嘉涛路停车场': '嘉定区嘉涛路与陇南路交叉口',
     '闵行区剑川路中铁四局工地宿舍': '闵行区剑川路交通大学农业与生物学院工地',
-    '浦东新区川沙六团七灶北张家宅': '浦东新区川沙新镇七灶村北张家宅'
+    '浦东新区川沙六团七灶北张家宅': '浦东新区川沙新镇七灶村北张家宅',
+    '闵行区思源北路和文俊路路口工地宿舍': '闵行区思源北路和文俊路路口'
 }
 
 # Parse addresses from txt
@@ -31,8 +32,9 @@ for date in dateArr:
     passage = data.split('\n')
 
     for line in passage:
-        matchArr = re.findall(r'于(.*?)[。，]', line, re.M)
-        for addStr in matchArr:
+        matchArr = re.findall(r'于(.*?)区(.*?)[。，]', line, re.M)
+        for addTuple in matchArr:
+            addStr = str(addTuple[0]) + '区' + str(addTuple[1])
             addCount += 1
             # Correct wrong address and typo
             if addStr in fixDict:
