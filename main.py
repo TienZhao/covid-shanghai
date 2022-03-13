@@ -2,7 +2,7 @@ import re
 # -*- coding: utf-8 -*-
 
 # Read start_date.txt to end_date-1.txt
-dateArr = range(20220312, 20220305, -1)
+dateArr = range(20220313, 20220305, -1)
 addCount = 0
 addArr = []
 
