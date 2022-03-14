@@ -58,7 +58,7 @@
       }
       .btn{
           width: 140px;
-          height: 35px;
+          height: 40px;
           color: #000000;
           font-size: 14px;;
           border-radius: 5px;
@@ -99,9 +99,9 @@
         // 创建定位控件
         var locationControl = new BMapGL.LocationControl({
             // 控件的停靠位置（可选，默认左上角）
-            anchor: BMAP_ANCHOR_TOP_RIGHT,
+            anchor: BMAP_ANCHOR_TOP_LEFT,
             // 控件基于停靠位置的偏移量（可选）
-            offset: new BMapGL.Size(10, 10)
+            offset: new BMapGL.Size(160, 10)
         });
         // 将控件添加到地图上
         map.addControl(locationControl);
@@ -115,7 +115,7 @@
         }
         function geocodeSearch(add){
             if(index < adds.length){
-                setTimeout(window.bdGEO,400);
+                setTimeout(window.bdGEO,100);
             }
             myGeo.getPoint(add, function(point){
                 if (point) {
@@ -126,12 +126,12 @@
                 }
             }, "上海市");
         }
-	// 编写自定义函数,创建标注
-	function addMarker(point,label){
-		var marker = new BMapGL.Marker(point, {icon: myIcon});
-		map.addOverlay(marker);
-		marker.setLabel(label);
-	}
+        // 编写自定义函数,创建标注
+        function addMarker(point,label){
+            var marker = new BMapGL.Marker(point, {icon: myIcon});
+            map.addOverlay(marker);
+            marker.setLabel(label);
+        }
     </script>
 </body>
 </html>
