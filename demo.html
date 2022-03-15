@@ -73,7 +73,7 @@
            bottom: 0px;
            width: 100%;
            line-height: 20px;
-           font-size: 14px
+           font-size: 14px;
            text-align: left;
            background: #CCCCCC;
        }
@@ -131,6 +131,33 @@
             var marker = new BMapGL.Marker(point, {icon: myIcon});
             map.addOverlay(marker);
             marker.setLabel(label);
+        }
+
+        // 当zoom out时，隐藏所有标签
+        map.addEventListener("zoomend", function(){
+            var zoom = map.getZoom();
+            if(zoom < 12.5){
+                hideLabel()
+            } else {
+                showLabel()
+            }
+        });
+        // label显示
+        function showLabel() {
+            var overlays = map.getOverlays();
+            for (var i = 0; i < overlays.length; i++) {
+                if (overlays[i].toString() == "Label") {
+                    overlays[i].show();
+                }
+            }
+        }
+        function hideLabel() {
+            var overlays = map.getOverlays();
+            for (var i = 0; i < overlays.length; i++) {
+                if (overlays[i].toString() == "Label") {
+                    overlays[i].hide();
+                }
+            }
         }
     </script>
 </body>
