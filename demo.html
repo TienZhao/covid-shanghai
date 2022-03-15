@@ -135,7 +135,7 @@
         }
 
         // 当zoom out时，隐藏所有标签
-        map.addEventListener("zoomend", controlLabelByZoom());
+        map.addEventListener("zoomend", controlLabelByZoom);
 
         function controlLabelByZoom(){
             var zoom = map.getZoom();
