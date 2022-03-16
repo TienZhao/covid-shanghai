@@ -73,9 +73,9 @@
         }
         .btn{
             width: 140px;
-            height: 40px;
+            height: 35px;
             color: #000000;
-            border-color: black;
+            border-color: #BBBBBB;
             font-size: 14px;;
             border-radius: 5px;
             background: #FFD700;
@@ -129,6 +129,17 @@
         });
         map.on('zoomend', mapZoomend);
         var zoom = map.getZoom()
+
+        // 定位控件
+        AMap.plugin('AMap.Geolocation', function() {
+            var geolocation = new AMap.Geolocation({
+                enableHighAccuracy: true,//使用高精度定位
+                buttonPosition:'LT',    //定位按钮的停靠位置
+                buttonOffset: new AMap.Pixel(160, 10),//定位按钮与设置的停靠位置的偏移量
+                zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
+            });
+            map.addControl(geolocation);        
+        });
 
         var geocoder = new AMap.Geocoder({
             city: "021", 
