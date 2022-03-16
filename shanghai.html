@@ -44,15 +44,6 @@
             /*background-color: white;*/
             font-size: small;
         }
-        #result>div:first-child{
-            width: 100%;
-            height: 40px;
-            text-align: center;
-            line-height: 40px;
-            background: #00BFFF;
-            border-radius: 7px 7px 0px 0px;
-            color: #fff;
-        }
         #result ul{
             list-style-type: none;
             margin: 0;
@@ -68,21 +59,6 @@
         #result>div:last-child{
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            padding: 10px;
-        }
-        .btn{
-            width: 140px;
-            height: 35px;
-            color: #000000;
-            border-color: #BBBBBB;
-            font-size: 14px;;
-            border-radius: 5px;
-            background: #FFD700;
-            box-shadow: none;
-        }
-        .btn:hover{
-            cursor: pointer;
         }
         .marker {
             position: absolute;
@@ -97,25 +73,83 @@
             background-color: white;
             border-radius: 3px;
         }
+        #donateDiv{
+            margin-top: 10px;
+            width: 240px;
+            height: auto;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+        }
+        #buttonRow{
+            width: 100%;
+            background: transparent;
+            display: flex;
+            flex-direction: row;
+        }
+        #donateText{
+            margin: 0px;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            background: #FFD700;    
+            text-align: center;   
+            line-height: 20px;
+            font-size: 16px;
+            font-color: black;     
+        }
+        .btn{
+            width: 140px;
+            height: 35px;
+            color: #000000;
+            border-color: #BBBBBB;
+            font-size: 14px;
+            border-width: 0.5px;
+            border-radius: 5px;
+            background: #FFD700;
+            box-shadow: none;
+        }
+        .btn:hover{
+            cursor: pointer;
+        }
+        .subbtn{
+            margin-left: 10px;
+            width: 60px;
+            height: 35px;
+            color: #000000;
+            border-color: #BBBBBB;
+            font-size: 14px;
+            border-width: 0.5px;
+            border-radius: 5px;
+            background: #EEEEEE;
+            box-shadow: none;
+        }
     </style>
 </head>
 <body>
     <div id='container'></div>
     <div id='result' width='100%'>
-        <button onclick='geoCode()' class='btn'>开始戴口罩</button>
-        <!-- <button onclick='bdGEO()' class='btn'>开始戴口罩</button> -->        
-        <!-- <li>感谢大家的热情，差点把百度地图的服务器干垮</li>
-        <li>所以百度封禁了我的账号，他说明天上班才会解禁</li>
-        <li>3月15日的疫情动态更新也可能延迟，给大家磕头了！</li>
-        <li>--------------------------------------</li>
-        <li>小伙伴告诉我，怎么连个截图都不放，好像被黑了一样</li>
-        <li>打赏十块钱，给服务器加个鸡腿吧！</li>
-        <img src="./images/history.jpg" width="350"/>
-        <li>服务器为什么要吃鸡腿（大误）</li> -->
+        <div id='buttonRow'>
+            <button onclick='geoCode()' class='btn'>开始戴口罩</button>
+            <button onclick='btnDonate()' class='subbtn'>支持</button>
+        </div>
+        <div id='donateDiv' style="display: none;">
+            <div id='donateText'>
+                <span><b>打赏十块</b></span>
+                <span><b>给服务器加个鸡腿</b></span>
+                <span><b>Donate ￥10</b></span>
+                <span><b>Power our server!</b></span>
+                <span><a href="https://github.com/TienZhao/covid-shanghai">Github Repo</a></span>
+            </div>
+            <!-- <img src="images/donate2.jpg" width="326"/> -->
+            <img src="https://tienzhao.github.io/covid-shanghai/images/donation2.jpg" width="240"/>
+            </div>
+        </div>
     </div>
     <!-- 流量统计 -->
     <script async src="//static.getclicky.com/101358038.js"></script>
-    <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101358038ns.gif" /></p></noscript>
+    <noscript><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101358038ns.gif" /></noscript>
     <script type="text/javascript">
         window._AMapSecurityConfig = {
             securityJsCode:'44947b774bfbf1c390bc98539582d54b',
@@ -132,14 +166,19 @@
             resizeEnable: true
         });
         map.on('zoomend', mapZoomend);
-        var zoom = map.getZoom()
+        var zoom = map.getZoom();
+
+        function btnDonate(){
+            let div = document.getElementById('donateDiv');
+            div.style["display"] = div.style["display"] == 'none'? 'flex' : 'none';
+        }
 
         // 定位控件
         AMap.plugin('AMap.Geolocation', function() {
             var geolocation = new AMap.Geolocation({
                 enableHighAccuracy: true,//使用高精度定位
                 buttonPosition:'LT',    //定位按钮的停靠位置
-                buttonOffset: new AMap.Pixel(160, 10),//定位按钮与设置的停靠位置的偏移量
+                buttonOffset: new AMap.Pixel(230, 10),//定位按钮与设置的停靠位置的偏移量
                 zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
             });
             map.addControl(geolocation);        
