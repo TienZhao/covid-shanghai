@@ -163,7 +163,9 @@
         
         // var markerObjs = {};
         var map = new AMap.Map("container", {
-            resizeEnable: true
+            resizeEnable: true,
+            center: [121.5, 31.25],
+            zoom: 12
         });
         map.on('zoomend', mapZoomend);
         var zoom = map.getZoom();
