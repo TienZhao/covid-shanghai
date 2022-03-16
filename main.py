@@ -2,7 +2,7 @@ import re
 # -*- coding: utf-8 -*-
 
 # Read start_date.txt to end_date-1.txt
-dateArr = range(20220315, 20220305, -1)
+dateArr = range(20220316, 20220305, -1)
 addCount = 0
 addArr = []
 
@@ -45,21 +45,28 @@ for date in dateArr:
             if addStr not in addArr:
                 addArr.append(addStr)
 
-# Update demo.html with new address array
-with open('demo.html', 'r+', encoding='utf-8') as f:
-    lines = []
-    for line in f.readlines():
-        startIndex = line.find('var adds = ')
-        if startIndex >= 0:
-            # print(line)
-            lines.append(' '* startIndex + 'var adds = ' + str(addArr) + '\n')
-        else:
-            lines.append(line)
-    f.close()
 
-with open('demo.html', 'w', encoding='utf-8') as f:
-    f.writelines(lines)
-    f.close()
+def updateFile(path):
+    # Update demo.html with new address array
+    with open(path, 'r+', encoding='utf-8') as f:
+        lines = []
+        for line in f.readlines():
+            startIndex = line.find('var adds = ')
+            if startIndex >= 0:
+                # print(line)
+                lines.append(' '* startIndex + 'var adds = ' + str(addArr) + '\n')
+            else:
+                lines.append(line)
+        f.close()
+
+    with open(path, 'w', encoding='utf-8') as f:
+        f.writelines(lines)
+        f.close()
+
+
+
+updateFile('demo.html')
+updateFile('shanghai.html')
 
 print(addArr)
 print("共处理" + str(addCount) + "条地址；去重后共计" + str(len(addArr)) + "个地点。")
