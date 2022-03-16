@@ -165,7 +165,7 @@
         var map = new AMap.Map("container", {
             resizeEnable: true,
             center: [121.5, 31.25],
-            zoom: 12
+            zoom: 11
         });
         map.on('zoomend', mapZoomend);
         var zoom = map.getZoom();
@@ -269,7 +269,7 @@
             var markerSpan = document.createElement("span");
             markerSpan.className = 'marker';
             markerSpan.innerHTML = labelString;
-            if (zoom < 12){ markerSpan.style["display"] = "none" }
+            if (zoom < 13){ markerSpan.style["display"] = "none" }
             markerContent.appendChild(markerSpan);
 
             marker.setContent(markerContent); //更新点标记内容            
@@ -279,7 +279,7 @@
         function mapZoomend(){
             zoom = map.getZoom()
             let markerElements = document.getElementsByClassName("marker");
-            if (zoom < 12){
+            if (zoom < 13){
                 for(let m = 0; m < markerElements.length; m++)
                 {
                     markerElements[m].style["display"] = "none";
