@@ -102,7 +102,7 @@
             font-color: black;     
         }
         .btn{
-            width: 140px;
+            width: 120px;
             height: 35px;
             color: #000000;
             border-color: #BBBBBB;
@@ -135,6 +135,7 @@
         <div id='buttonRow'>
             <button onclick='geoCode()' class='btn'>开始戴口罩</button>
             <button onclick='btnDonate()' class='subbtn'>支持</button>
+            <button onclick='btnAd()' class='subbtn'>领券</button>
         </div>
         <div id='donateDiv' style="display: none;">
             <div class='donateText'>
@@ -150,7 +151,7 @@
             <div class='donateText'>
                 <span><b>特别感谢</b></span>
                 <span>新车间创客空间</span>
-                <span>**卿、**明、**宇、*瑶、*靖、*奕、*郑、*椿、*红、**怡、**阳、*悦、**喻、**彤、**越、**依、**嘉、*言、**清、**东、**欣、A*y、*🐒、*昂、*强、*M、*颖、**斌、L*s、E*i等朋友们</span>
+                <span>以及**卿、**明、**宇、*瑶、*靖、*奕、*郑、*椿、*红、**怡、**阳、*悦、**喻、**彤、**越、**依、**嘉、*言、**清、**东、**欣、A*y、*🐒、*昂、*强、*M、*颖、**斌、L*s、E*i、S*e等朋友们</span>
                 <span><b>对炸鸡服务器的支持！</b></span>
             </div>
         </div>
@@ -187,12 +188,17 @@
             div.style["display"] = div.style["display"] == 'none'? 'flex' : 'none';
         }
 
+
+        function btnAd(){      
+            window.location.href = "https://s.click.taobao.com/aWJmsZu";
+        }
+
         // 定位控件
         AMap.plugin('AMap.Geolocation', function() {
             var geolocation = new AMap.Geolocation({
                 enableHighAccuracy: true,//使用高精度定位
                 buttonPosition:'LT',    //定位按钮的停靠位置
-                buttonOffset: new AMap.Pixel(230, 10),//定位按钮与设置的停靠位置的偏移量
+                buttonOffset: new AMap.Pixel(280, 10),//定位按钮与设置的停靠位置的偏移量
                 zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
             });
             map.addControl(geolocation);        
