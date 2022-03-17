@@ -1,12 +1,6 @@
 # COVID-Shanghai
 
-- 受到GitHub异常影响，代码更新无法被部署到页面上，可能会导致2022-03-17数据更新延迟。
-  Due to some incident with GitHub, the page update can not be deployed now. This may cause delay in the update of 2022-03-17 data.
-
-  - https://github.com/actions/deploy-pages/issues/22
-  
 - Demo link: [https://tienzhao.github.io/covid-shanghai/demo.html](https://tienzhao.github.io/covid-shanghai/demo.html)
-
   - **This demo stopped working** because Baidu Map recognize the rapidly increasing traffic as attack and blocked my developer account.
 
 - New demo link: [https://tienzhao.github.io/covid-shanghai/shanghai.html](https://tienzhao.github.io/covid-shanghai/demo.html)
