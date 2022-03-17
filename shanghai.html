@@ -127,6 +127,32 @@
             background: #EEEEEE;
             box-shadow: none;
         }
+        /*.btn{
+            width: 90px;
+            height: 35px;
+            color: #000000;
+            border-color: #BBBBBB;
+            font-size: 14px;
+            border-width: 0.5px;
+            border-radius: 5px;
+            background: #FFD700;
+            box-shadow: none;
+        }
+        .btn:hover{
+            cursor: pointer;
+        }
+        .subbtn{
+            margin-left: 10px;
+            width: 35px;
+            height: 35px;
+            color: #000000;
+            border-color: #BBBBBB;
+            font-size: 14px;
+            border-width: 0.5px;
+            border-radius: 5px;
+            background: #FFFFFF;
+            box-shadow: none;
+        }*/
     </style>
 </head>
 <body>
@@ -135,7 +161,13 @@
         <div id='buttonRow'>
             <button onclick='geoCode()' class='btn'>开始戴口罩</button>
             <button onclick='btnDonate()' class='subbtn'>支持</button>
-            <button onclick='btnAd()' class='subbtn'>领券</button>
+            <!-- <button onclick='btnAd()' class='subbtn'>领券</button> -->
+            <button onclick='btnShare()' class='subbtn'>分享</button>
+
+            <!-- <button onclick='geoCode()' class='btn'>运行😷</button>
+            <button onclick='btnDonate()' class='subbtn'>🙌</button>
+            <button onclick='btnShare()' class='subbtn'>🔗</button>
+            <button onclick='btnAd()' class='subbtn'>🛒</button> -->
         </div>
         <div id='donateDiv' style="display: none;">
             <div class='donateText'>
@@ -193,12 +225,27 @@
             window.location.href = "https://s.click.taobao.com/aWJmsZu";
         }
 
+        function btnShare(){
+            let transfer = document.createElement('input');
+            document.body.appendChild(transfer);
+            transfer.value = "【最新】上海疫情地图 \nhttps://mask.tienzhao.com/shanghai.html";
+            transfer.focus();
+            transfer.select();
+            if (document.execCommand('copy')) {
+                document.execCommand('copy');
+                alert("复制成功，赶紧发给好友吧！");
+            }
+            transfer.blur();
+            document.body.removeChild(transfer);
+        }
+
         // 定位控件
         AMap.plugin('AMap.Geolocation', function() {
             var geolocation = new AMap.Geolocation({
                 enableHighAccuracy: true,//使用高精度定位
                 buttonPosition:'LT',    //定位按钮的停靠位置
                 buttonOffset: new AMap.Pixel(280, 10),//定位按钮与设置的停靠位置的偏移量
+                // buttonOffset: new AMap.Pixel(245, 10),//定位按钮与设置的停靠位置的偏移量
                 zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
             });
             map.addControl(geolocation);        
