@@ -76,10 +76,12 @@
         #donateDiv{
             margin-top: 10px;
             width: 240px;
-            height: auto;
+            height: 600px;
             background: transparent;
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
         #buttonRow{
             width: 100%;
@@ -87,7 +89,7 @@
             display: flex;
             flex-direction: row;
         }
-        #donateText{
+        .donateText{
             margin: 0px;
             width: 100%;
             padding: 10px;
@@ -135,7 +137,7 @@
             <button onclick='btnDonate()' class='subbtn'>支持</button>
         </div>
         <div id='donateDiv' style="display: none;">
-            <div id='donateText'>
+            <div class='donateText'>
                 <span><b>打赏十块</b></span>
                 <span><b>给服务器加个鸡腿</b></span>
                 <span><b>Donate ￥10</b></span>
@@ -144,6 +146,12 @@
             </div>
             <!-- <img src="images/donate2.jpg" width="326"/> -->
             <img src="https://tienzhao.github.io/covid-shanghai/images/donation2.jpg" width="240"/>
+
+            <div class='donateText'>
+                <span><b>特别感谢</b></span>
+                <span>新车间创客空间</span>
+                <span>**卿、**明、**宇、*瑶、*靖、*奕、*郑、*椿、*红、**怡、**阳、*悦、**喻、**彤、**越、**依、**嘉、*言、**清、**东、**欣、A*y、*🐒、*昂、*强、*M、*颖、**斌、L*s、E*i等朋友们</span>
+                <span><b>对炸鸡服务器的支持！</b></span>
             </div>
         </div>
     </div>
