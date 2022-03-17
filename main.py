@@ -66,9 +66,9 @@ def updateFile(path, midRisks, highRisks):
             startIndexMid = line.find('var midRisks = ')
             startIndexHigh = line.find('var highRisks = ')
             if startIndexMid >= 0:
-                lines.append(' '* startIndexMid + 'var adds = ' + str(midRisks) + '\n')
+                lines.append(' '* startIndexMid + 'var midRisks = ' + str(midRisks) + '\n')
             elif startIndexHigh >= 0:
-                lines.append(' '* startIndexHigh + 'var adds = ' + str(highRisks) + '\n')
+                lines.append(' '* startIndexHigh + 'var highRisks = ' + str(highRisks) + '\n')
             else:
                 lines.append(line)
         f.close()
