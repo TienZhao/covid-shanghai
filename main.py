@@ -1,10 +1,17 @@
-import re
+import re, json
+import geo
 # -*- coding: utf-8 -*-
 
 # Read start_date.txt to end_date-1.txt
 dateArr = range(20220316, 20220305, -1)
 addCount = 0
 addArr = []
+
+# Risky areas
+midRisks = ['嘉定区娄塘路760弄','徐汇区漕溪北路1200号','浦东新区听悦路920号','闵行区虹梅南路1578号',
+            '闵行区思源北路文俊路路口交通大学学生服务中心工地宿舍','金山区学府路1811弄','黄浦区局门后路9号',
+            '静安区河南北路233号','浦东新区沪东新村街道长岛路281号']
+highRisks = []
 
 # Fix wrong plot locations by replacing the keyword
 fixDict = {
@@ -29,6 +36,8 @@ fixDict = {
 }
 
 # Parse addresses from txt
+addArr.extend(midRisks)
+addArr.extend(highRisks)
 for date in dateArr:
     path = str(date) + '.txt'
 
@@ -49,15 +58,17 @@ for date in dateArr:
                 addArr.append(addStr)
 
 
-def updateFile(path):
-    # Update demo.html with new address array
+def updateFile(path, midRisks, highRisks):
+    # Update demo.html with new risky area array
     with open(path, 'r+', encoding='utf-8') as f:
         lines = []
         for line in f.readlines():
-            startIndex = line.find('var adds = ')
-            if startIndex >= 0:
-                # print(line)
-                lines.append(' '* startIndex + 'var adds = ' + str(addArr) + '\n')
+            startIndexMid = line.find('var midRisks = ')
+            startIndexHigh = line.find('var highRisks = ')
+            if startIndexMid >= 0:
+                lines.append(' '* startIndexMid + 'var adds = ' + str(midRisks) + '\n')
+            elif startIndexHigh >= 0:
+                lines.append(' '* startIndexHigh + 'var adds = ' + str(highRisks) + '\n')
             else:
                 lines.append(line)
         f.close()
@@ -67,9 +78,16 @@ def updateFile(path):
         f.close()
 
 
+# updateFile('demo.html')
+updateFile('shanghai.html', midRisks, highRisks)
 
-updateFile('demo.html')
-updateFile('shanghai.html')
+
+res = geo.getGeoArr(addArr)
+jsonPath = 'positions.json'
+with open(jsonPath, 'w', encoding='utf-8') as f:
+    json.dump(res, f, ensure_ascii=False)
+    f.close()
+
 
 print(addArr)
 print("共处理" + str(addCount) + "条地址；去重后共计" + str(len(addArr)) + "个地点。")
