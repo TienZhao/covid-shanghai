@@ -3,7 +3,7 @@ import geo
 # -*- coding: utf-8 -*-
 
 # Read start_date.txt to end_date-1.txt
-dateArr = range(20220316, 20220305, -1)
+dateArr = range(20220317, 20220305, -1)
 addCount = 0
 addArr = []
 

@@ -1,4 +1,4 @@
-import json, requests
+import json, requests, time
 # -*- coding: utf-8 -*-
 
 geoUrl = 'https://restapi.amap.com/v3/geocode/geo'
@@ -33,8 +33,11 @@ def getGeoArr(arr):
                 lngLat['lat'] = float(g[1])
                 lngLat['Q'] = float(g[1])
                 out[subArr[i]] = lngLat
+            print('Fetched ' + str(subArr))
         else:
-            print('ERROR on ' + str(subArr))
+            print('[ERROR] on ' + str(subArr))
+            print(res)
+        time.sleep(0.5)
     return out
 
 
