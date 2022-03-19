@@ -2,7 +2,7 @@ import json, requests, time
 # -*- coding: utf-8 -*-
 
 geoUrl = 'https://restapi.amap.com/v3/geocode/geo'
-key = 'YOUR_AMAP_KEY'
+key = '8ce21affa63959ac7e9cec9757bf2fa6'
 cityCode = '021'
 
 def getGeo(add):
@@ -37,7 +37,7 @@ def getGeoArr(arr):
         else:
             print('[ERROR] on ' + str(subArr))
             print(res)
-        time.sleep(0.5)
+        time.sleep(0.1)
     return out
 
 

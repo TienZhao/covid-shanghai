@@ -3,14 +3,14 @@ import geo
 # -*- coding: utf-8 -*-
 
 # Read start_date.txt to end_date-1.txt
-dateArr = range(20220317, 20220305, -1)
+dateArr = range(20220318, 20220305, -1)
 addCount = 0
 addArr = []
 
 # Risky areas
 midRisks = ['嘉定区娄塘路760弄','徐汇区漕溪北路1200号','浦东新区听悦路920号','闵行区虹梅南路1578号',
             '闵行区思源北路文俊路路口交通大学学生服务中心工地宿舍','金山区学府路1811弄','黄浦区局门后路9号',
-            '静安区河南北路233号','浦东新区沪东新村街道长岛路281号']
+            '静安区河南北路233号','浦东新区沪东新村街道长岛路281号','黄浦区顺昌路612弄12号']
 highRisks = []
 
 # Fix wrong plot locations by replacing the keyword
