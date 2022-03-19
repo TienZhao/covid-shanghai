@@ -190,8 +190,8 @@
         </div>
     </div>
     <!-- 流量统计 -->
-    <!-- <script async src="//static.getclicky.com/101358038.js"></script>
-    <noscript><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101358038ns.gif" /></noscript> -->
+    <script async src="//static.getclicky.com/101358038.js"></script>
+    <noscript><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101358038ns.gif" /></noscript>
     <script async src="//static.getclicky.com/101358152.js"></script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101358152ns.gif" /></p></noscript>
     <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
@@ -381,79 +381,79 @@
         }
 
 
-        // // 为了网络安全，避免API滥用
-        // // 参考：https://www.cnblogs.com/moluy/p/14085173.html
-        // function destroyMap() {
-        //     console.log('为了避免API滥用，本网页禁止控制台调试。\n你也会开发？一起为上海做贡献！\nhttps://github.com/TienZhao/covid-shanghai/')
-        //     map && map.destroy();
-        //     AMap = null;
-        // }
-        // //禁止F12键盘事件
-        // document.addEventListener('keydown', function(event){
-        //    return 123 != event.keyCode || (event.returnValue = false)
-        // });
-        // //禁止右键、选择、复制
-        // document.addEventListener('contextmenu', function(event){
-        //    return event.returnValue = false
-        // })
-        // //检测控制台高度变化
-        // function resize(){
-        //     var threshold = 200;
-        //     var widthThreshold = window.outerWidth - window.innerWidth > threshold;
-        //     var heightThreshold = window.outerHeight - window.innerHeight > threshold;
-        //     if(widthThreshold || heightThreshold){
-        //         destroyMap();
-        //     }
-        // }
-        // window.addEventListener('resize', resize);
-        // resize()
-        // //监听toString方法和dom属性
-        // var observerConsole = {
-        //     openCallback: function(){
-        //         destroyMap();
-        //         try {
-        //             window.open("about:blank", "_self")
-        //         } catch(e) {
-        //             var btn = document.createElement("button");
-        //             btn.onclick = function() {
-        //                 window.open("about:blank", "_self")
-        //             }
-        //             btn.click()
-        //         }
-        //     },
-        //     observer: function(){
-        //         //这里使用dom元素，在打开控制台时才会计算id
-        //         var dom = document.createElement("div"), that = this;
-        //         Object.defineProperty(dom, "id", {
-        //             get: function(){
-        //                 that.openCallback()
-        //             }
-        //         })
-        //         //ie不支持console.table
-        //         //console.info(dom);
-        //         console.log(dom);
-        //     },
-        //     observerF: function(){
-        //         var obj = Object.create(null), t = Date.now(), that = this;
-        //         Object.defineProperty(obj, "a", {
-        //             get: function() {
-        //                 if(Date.now() - t > 100){
-        //                     that.openCallback()
-        //                 }
-        //             }
-        //         })
-        //         setInterval(function(){
-        //             t = Date.now();
-        //             (function(){})["constructor"]("debugger")();//debugger;
-        //             console.log(obj.a);
-        //         }, 200)
-        //     },
-        //     init: function(){
-        //         var t = window.navigator.userAgent.toLowerCase();
-        //         t.indexOf("firefox") >= 0 ? this.observerF() : this.observer();
-        //     }
-        // }
-        // observerConsole.init();
+        // 为了网络安全，避免API滥用
+        // 参考：https://www.cnblogs.com/moluy/p/14085173.html
+        function destroyMap() {
+            console.log('为了避免API滥用，本网页禁止控制台调试。\n你也会开发？一起为上海做贡献！\nhttps://github.com/TienZhao/covid-shanghai/')
+            map && map.destroy();
+            AMap = null;
+        }
+        //禁止F12键盘事件
+        document.addEventListener('keydown', function(event){
+           return 123 != event.keyCode || (event.returnValue = false)
+        });
+        //禁止右键、选择、复制
+        document.addEventListener('contextmenu', function(event){
+           return event.returnValue = false
+        })
+        //检测控制台高度变化
+        function resize(){
+            var threshold = 200;
+            var widthThreshold = window.outerWidth - window.innerWidth > threshold;
+            var heightThreshold = window.outerHeight - window.innerHeight > threshold;
+            if(widthThreshold || heightThreshold){
+                destroyMap();
+            }
+        }
+        window.addEventListener('resize', resize);
+        resize()
+        //监听toString方法和dom属性
+        var observerConsole = {
+            openCallback: function(){
+                destroyMap();
+                try {
+                    window.open("about:blank", "_self")
+                } catch(e) {
+                    var btn = document.createElement("button");
+                    btn.onclick = function() {
+                        window.open("about:blank", "_self")
+                    }
+                    btn.click()
+                }
+            },
+            observer: function(){
+                //这里使用dom元素，在打开控制台时才会计算id
+                var dom = document.createElement("div"), that = this;
+                Object.defineProperty(dom, "id", {
+                    get: function(){
+                        that.openCallback()
+                    }
+                })
+                //ie不支持console.table
+                //console.info(dom);
+                console.log(dom);
+            },
+            observerF: function(){
+                var obj = Object.create(null), t = Date.now(), that = this;
+                Object.defineProperty(obj, "a", {
+                    get: function() {
+                        if(Date.now() - t > 100){
+                            that.openCallback()
+                        }
+                    }
+                })
+                setInterval(function(){
+                    t = Date.now();
+                    (function(){})["constructor"]("debugger")();//debugger;
+                    console.log(obj.a);
+                }, 200)
+            },
+            init: function(){
+                var t = window.navigator.userAgent.toLowerCase();
+                t.indexOf("firefox") >= 0 ? this.observerF() : this.observer();
+            }
+        }
+        observerConsole.init();
 
     </script>
 </body>

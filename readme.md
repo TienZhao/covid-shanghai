@@ -1,13 +1,14 @@
 # COVID-Shanghai
 
-- Demo link: [https://tienzhao.github.io/covid-shanghai/demo.html](https://tienzhao.github.io/covid-shanghai/demo.html)
-  - **This demo stopped working** because Baidu Map recognize the rapidly increasing traffic as attack and blocked my developer account.
-
-- New demo link: [https://tienzhao.github.io/covid-shanghai/shanghai.html](https://tienzhao.github.io/covid-shanghai/demo.html)
+- 页面链接: https://tienzhao.github.io/covid-shanghai/shanghai.html
+  
+  - 点击左上角按钮，开始戴上口罩
+  
+- Demo link: https://tienzhao.github.io/covid-shanghai/shanghai.html
 
   - Click the left-top button, and see the COVID case addresses in Shanghai.
 
-- Data updated on March 16, 2022
+- Data updated on March 19, 2022
 
 - Workflow:
   - Manually download announcement text from [Shanghai Municipal Health Commission](https://wsjkw.sh.gov.cn/xwzx/)
@@ -22,5 +23,5 @@
 
 - Support ￥10, and let's get rid of COVID!
 
-  ![](images/donation.jpg)
+  ![](images/donation2.jpg)
 
