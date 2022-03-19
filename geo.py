@@ -39,6 +39,3 @@ def getGeoArr(arr):
             print(res)
         time.sleep(0.1)
     return out
-
-
-

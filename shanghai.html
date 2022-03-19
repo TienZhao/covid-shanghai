@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <title>上海疫情关联地址（3月19日更新）</title>
+    <!-- <title>馋佬胚综合征疫情地图</title> -->
+    <title>上海加油</title>
     <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
     <style>
         html,
@@ -36,7 +37,7 @@
             left: 10px;
             width: 350px;
             height: auto;
-            line-height: 30px;
+            /*line-height: 30px;*/
             text-align: left;
             background: transparent;
             border-radius: 7px;
@@ -62,8 +63,8 @@
         }
         .marker {
             position: absolute;
-            top: 15px;
-            left: 55px;
+            top: 8px;
+            left: 40px;
             color: black;
             padding: 4px 10px;
             box-shadow: 1px 1px 1px rgba(10, 10, 10, .2);
@@ -72,6 +73,28 @@
             font-family: "";
             background-color: white;
             border-radius: 3px;
+        }
+        #noticeDiv{
+            margin-top: 10px;
+            width: 240px;
+            height: auto;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .noticeText{ 
+            margin: 0px;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            background: #FFFFFF;  
+            opacity: 0.8;  
+            text-align: left; 
+            font-color: black;   
+            font-size: 8px; 
+            line-height: 16px;         
         }
         #donateDiv{
             margin-top: 10px;
@@ -159,27 +182,36 @@
     <div id='container'></div>
     <div id='result' width='100%'>
         <div id='buttonRow'>
-            <button onclick='geoCode()' class='btn'>为上海加油!</button>
+            <!-- <button onclick='geoCode()' class='btn'>哪有馋佬胚？</button> -->
+            <button onclick='btnShare()' class='btn'>分享</button>
             <button onclick='btnDonate()' class='subbtn'>支持</button>
             <!-- <button onclick='btnAd()' class='subbtn'>领券</button> -->
-            <button onclick='btnShare()' class='subbtn'>分享</button>
+            <!-- <button onclick='btnShare()' class='subbtn'>分享</button> -->
+            <button onclick='btnAddress()' class='subbtn'>地址</button>
 
             <!-- <button onclick='geoCode()' class='btn'>运行😷</button>
             <button onclick='btnDonate()' class='subbtn'>🙌</button>
             <button onclick='btnShare()' class='subbtn'>🔗</button>
             <button onclick='btnAd()' class='subbtn'>🛒</button> -->
         </div>
-        <div id='donateDiv' style="display: none;">
-            <div class='donateText'>
+        <div id='noticeDiv'>
+            <div class="noticeText">
                 <span><b>❗一本正经❗</b></span>
-                <span>本站仅供数据可视化学习</span>
+                <span><b>表情应该表示阳性病例居住地,不代表封闭管理或风控地区！</b></span>
+                <!-- <span>公元3322年3月，馋佬胚综合征<i>(Epicurean Syndrome)</i>疫情在华亭县出现。感染者六神无主，饥渴难耐，只想不停吃鸡腿……</span> -->
+            </div>            
+        </div>
+        <div id='donateDiv' style="display: none;">
+            <div class='donateText'> 
+                <span>本站仅供数据可视化学习</span>               
                 <span>完全不保证数据真实准确</span>
                 <span>数据转载自上海发布</span>
+                <!-- <span>本页面仅供数据可视化学习，完全不保证数据真实准确，数据源于上海发布。如果您发现了错误和建议，欢迎<a href="https://wj.qq.com/s2/9880542/aac8/">反馈</a>！</span> -->
                 <span><b>打赏十块</b></span>
-                <span><b>给服务器加个鸡腿</b></span>
+                <span><b>给作者投喂鸡腿！</b></span>
                 <span><b>Donate ￥10</b></span>
                 <span><b>Power our server!</b></span>
-                <span><a href="https://github.com/TienZhao/covid-shanghai">Github Repo</a></span>
+                <span><a href="https://github.com/TienZhao/covid-shanghai">Github Repo</a> | <a href="https://wj.qq.com/s2/9880542/aac8/">意见反馈</a></span>
             </div>
             <!-- <img src="images/donate2.jpg" width="326"/> -->
             <img src="https://tienzhao.github.io/covid-shanghai/images/donation2.jpg" width="240"/>
@@ -190,7 +222,8 @@
                 <span>医护人员和防疫人员</span>
                 <span>以及</span>
                 <span>新车间创客空间</span>
-                <span>**卿、**明、**宇、*瑶、*靖、*奕、*郑、*椿、*红、**怡、**阳、*悦、**喻、**彤、**越、**依、**嘉、*言、**清、**东、**欣、A*y、*🐒、*昂、*强、*M、*颖、**斌、L*s、E*i、S*e、*𝙮、B*g、**豪、**超、**捷、**健、*绢、*锟、*华、*兴、*枫、*菲、*格、*💞、*妙、**鹏、**敏、**慧等朋友们</span><span><b>对炸鸡服务器的支持！</b></span>
+                <span>**卿、**明、**宇、*瑶、*靖、*奕、*郑、*椿、*红、**怡、**阳、*悦、**喻、**彤、**越、**依、**嘉、*言、**清、**东、**欣、A*y、*🐒、*昂、*强、*M、*颖、**斌、L*s、E*i、S*e、*𝙮、B*g、**豪、**超、**捷、**健、*绢、*锟、*华、*兴、*枫、*菲、*格、*💞、*妙、**鹏、**敏、**慧、*🍡、*e、*子、*姐、*杭、**涵、**乂、**杰、*凯、*瑾、*赓等朋友们</span>
+                <span><b>对炸鸡服务器的支持！</b></span>
                 <span><b>我们❤️上海！</b></span>
             </div>
         </div>
@@ -223,8 +256,10 @@
         var zoom = map.getZoom();
 
         function btnDonate(){
-            let div = document.getElementById('donateDiv');
-            div.style["display"] = div.style["display"] == 'none'? 'flex' : 'none';
+            let noticeDiv = document.getElementById('noticeDiv');
+            let donateDiv = document.getElementById('donateDiv');
+            noticeDiv.style["display"] = noticeDiv.style["display"] == 'none'? 'flex' : 'none';
+            donateDiv.style["display"] = noticeDiv.style["display"] == 'none'? 'flex' : 'none';
         }
 
         // function btnAd(){      
@@ -263,9 +298,13 @@
         var markers = [];
         var marked = false;
         var positionData = {};
+        var addressAllow = true;
+        var addressOnDisplay = false;
         // 加载坐标文件
-        readTextFile("positions.json", function(text){
+        readTextFile("https://tienzhao.github.io/covid-shanghai/positions.json", function(text){
+        // readTextFile("positions.json", function(text){
             positionData = JSON.parse(text);
+            geoCode(positionData);
         });
 
         // 读取JSON文件
@@ -281,7 +320,7 @@
             rawFile.send(null);
         }
 
-        function geoCode() {
+        function geoCode(positionData) {
             if (!marked){
                 marked = true
                 map.remove(markers);
@@ -342,6 +381,7 @@
             var markerImg = document.createElement("img");
             markerImg.className = "markerlnglat";
             markerImg.src = "images/cheers.png";
+            // markerImg.src = "images/goofy.png";
             markerContent.appendChild(markerImg);
 
             // 点标记中的文本
@@ -362,7 +402,7 @@
             };
             markerSpan.innerHTML = labelString;
             // 镜头范围太大时候，隐藏文本标记
-            if (zoom < 13){ markerSpan.style["display"] = "none" };         
+            if (zoom < 13 || !addressAllow){ markerSpan.style["display"] = "none" };         
             markerContent.appendChild(markerSpan);
 
             marker.setContent(markerContent); //更新点标记内容       
@@ -373,14 +413,35 @@
         function mapZoomend(){
             zoom = map.getZoom()
             let markerElements = document.getElementsByClassName("marker");
-            if (zoom < 13){
-                for(let m = 0; m < markerElements.length; m++)
-                {
+            if (zoom < 13 || !addressAllow){
+                if (addressOnDisplay){
+                    addressOnDisplay = false; 
+                    for(let m = 0; m < markerElements.length; m++) {
+                        markerElements[m].style["display"] = "none";
+                    }
+                }
+            } else if (zoom >= 13 && addressAllow) {
+                if (!addressOnDisplay){
+                    addressOnDisplay = true; 
+                    for(let m = 0; m < markerElements.length; m++) {
+                        markerElements[m].style["display"] = "block";
+                    }
+                }                
+            }
+        }
+
+        function btnAddress(){
+            let markerElements = document.getElementsByClassName("marker");
+            if (addressOnDisplay){
+                addressOnDisplay = false; 
+                addressAllow = false;
+                for(let m = 0; m < markerElements.length; m++) {
                     markerElements[m].style["display"] = "none";
                 }
             } else {
-                for(let m = 0; m < markerElements.length; m++)
-                {
+                addressOnDisplay = true; 
+                addressAllow = true;
+                for(let m = 0; m < markerElements.length; m++) {
                     markerElements[m].style["display"] = "block";
                 }
             }
