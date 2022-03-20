@@ -1,14 +1,14 @@
 # COVID-Shanghai
 
-- 页面链接: https://tienzhao.github.io/covid-shanghai/shanghai.html
+- 链接: [https://tienzhao.github.io/covid-shanghai/shanghai.html](https://tienzhao.github.io/covid-shanghai/shanghai.html)
   
-  - 点击左上角按钮，开始戴上口罩
+  - 点击左上角按钮，查看上海市最近14天*SARS-CoV-2*病毒阳性病例居住地。
   
-- Demo link: https://tienzhao.github.io/covid-shanghai/shanghai.html
+- Link: [https://tienzhao.github.io/covid-shanghai/shanghai.html](https://tienzhao.github.io/covid-shanghai/shanghai.html)
 
-  - Click the left-top button, and see the COVID case addresses in Shanghai.
+  - Click the left-top button, and see the addresses with *SARS-CoV-2* virus positive case in Shanghai in the past 14 days.
 
-- Data updated on March 19, 2022
+- Data updated on March 20, 2022
 
 - Workflow:
   - Manually download announcement text from [Shanghai Municipal Health Commission](https://wsjkw.sh.gov.cn/xwzx/)
