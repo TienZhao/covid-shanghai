@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <!-- <title>馋佬胚综合征疫情地图</title> -->
-    <title>上海加油</title>
+    <title>3月20日，上海加油！</title>
     <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
     <style>
         html,
@@ -125,7 +125,7 @@
             font-color: black;     
         }
         .btn{
-            width: 120px;
+            width: 80px;
             height: 35px;
             color: #000000;
             border-color: #BBBBBB;
@@ -140,7 +140,7 @@
         }
         .subbtn{
             margin-left: 10px;
-            width: 60px;
+            width: 50px;
             height: 35px;
             color: #000000;
             border-color: #BBBBBB;
@@ -183,10 +183,11 @@
     <div id='result' width='100%'>
         <div id='buttonRow'>
             <!-- <button onclick='geoCode()' class='btn'>哪有馋佬胚？</button> -->
-            <button onclick='btnShare()' class='btn'>分享</button>
+            <button onclick='geoCode()' class='btn'>上海加油</button>
+            <!-- <button onclick='btnShare()' class='btn'>分享</button> -->
             <button onclick='btnDonate()' class='subbtn'>支持</button>
             <!-- <button onclick='btnAd()' class='subbtn'>领券</button> -->
-            <!-- <button onclick='btnShare()' class='subbtn'>分享</button> -->
+            <button onclick='btnShare()' class='subbtn'>分享</button>
             <button onclick='btnAddress()' class='subbtn'>地址</button>
 
             <!-- <button onclick='geoCode()' class='btn'>运行😷</button>
@@ -196,7 +197,7 @@
         </div>
         <div id='noticeDiv'>
             <div class="noticeText">
-                <span><b>❗一本正经❗</b> 表情应该表示阳性病例居住地,不代表封闭管理或风控地区！</span>
+                <span><b>❗一本正经❗</b> 表情代表近14天阳性感染者居住地,不代表封闭管理或风控地区！</span>
                 <!-- <span>公元3322年3月，馋佬胚综合征<i>(Epicurean Syndrome)</i>疫情在华亭县出现。感染者六神无主，饥渴难耐，只想不停吃鸡腿……</span> -->
             </div>            
         </div>
@@ -304,7 +305,7 @@
         readTextFile("https://tienzhao.github.io/covid-shanghai/positions.json", function(text){
         // readTextFile("positions.json", function(text){
             positionData = JSON.parse(text);
-            geoCode(positionData);
+            // geoCode(positionData);
         });
 
         // 读取JSON文件
