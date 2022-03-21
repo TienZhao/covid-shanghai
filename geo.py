@@ -2,7 +2,7 @@ import json, requests, time
 # -*- coding: utf-8 -*-
 
 geoUrl = 'https://restapi.amap.com/v3/geocode/geo'
-key = '924b91968e033d46ec03e3897902a6f0'
+key = 'YOUR_AMAP_KEY'
 cityCode = '021'
 
 def getGeo(add):
