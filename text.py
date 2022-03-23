@@ -1,5 +1,5 @@
 import re
-path = 'C:\\HelloWorld\\covid-shanghai\\20220321.txt'
+path = 'C:\\HelloWorld\\covid-shanghai\\20220322.txt'
 district = ""
 with open(path, 'r+', encoding='utf-8') as f:
 
