@@ -3,9 +3,11 @@ import geo
 # -*- coding: utf-8 -*-
 
 # Read start_date.txt to end_date-1.txt
-dateArr = range(20220318, 20220308, -1)
+dateArr = range(20220314, 20220312, -1)
 addCount = 0
 addArr = []
+add_dict_arr = []
+# days_arr = []
 
 # Risky areas
 midRisks = ['嘉定区娄塘路760弄','浦东新区听悦路920号','闵行区虹梅南路1578号',
@@ -45,7 +47,20 @@ fixDict = {
 # Parse addresses from txt
 addArr.extend(midRisks)
 addArr.extend(highRisks)
+
+mid_dict_arr = [{"add": address, "date": "", "risk": "mid", "label": str("【中风险】" + address)} for address in midRisks]
+high_dict_arr = [{"add": address, "date": "", "risk": "high", "label": str("【高风险】" + address)} for address in highRisks]
+add_dict_arr.extend(mid_dict_arr)
+add_dict_arr.extend(high_dict_arr)
+
+
+# mid_dict_arr = [{"add": address, "style": 0, "name": str("【中风险】" + address)} for address in midRisks]
+# high_dict_arr = [{"add": address, "style": 0, "name": str("【高风险】" + address)} for address in highRisks]
+# days_arr.append(mid_dict_arr)
+# days_arr.append(high_dict_arr)
+
 for date in dateArr:
+    # one_day_arr = []
     path = str(date) + '.txt'
 
     fr = open(path, 'r', encoding='UTF-8')
@@ -63,6 +78,11 @@ for date in dateArr:
             print('<li>' + str(addCount) + '. ' + addStr + '</li>')
             if addStr not in addArr:
                 addArr.append(addStr)
+                date_in_label = " （" + str(date)[4:6] + "-" + str(date)[6:8] + "）"
+                add_dict_arr.append({"add": addStr, "date": str(date), "risk": "none", "label": str(addStr + date_in_label)})
+                # one_day_arr.append({"add": addStr, "style": dateArr[0] - date, "name": str(addStr + date_in_label)})
+
+    # days_arr.append(one_day_arr)
 
 
 def updateFile(path, midRisks, highRisks):
@@ -89,11 +109,23 @@ def updateFile(path, midRisks, highRisks):
 updateFile('shanghai.html', midRisks, highRisks)
 
 
-res = geo.getGeoArr(addArr)
-jsonPath = 'positions.json'
+# res = geo.getGeoArr(addArr)
+# jsonPath = 'positions.json'
+# with open(jsonPath, 'w', encoding='utf-8') as f:
+#     json.dump(res, f, ensure_ascii=False)
+#     f.close()
+
+res = geo.getGeoDictArr(add_dict_arr)
+jsonPath = 'positions_new.json'
 with open(jsonPath, 'w', encoding='utf-8') as f:
     json.dump(res, f, ensure_ascii=False)
     f.close()
+
+# res = geo.getGeoDaysArr(days_arr)
+# jsonPath = 'positions_new.js'
+# with open(jsonPath, 'w', encoding='utf-8') as f:
+#     f.write("var addreses = " + str(res))
+#     f.close()
 
 
 print(addArr)

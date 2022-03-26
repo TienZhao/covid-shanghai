@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <!-- <title>馋佬胚综合征疫情地图</title> -->
-    <title>3月25日，上海加油！</title>
+    <title>3月26日，上海加油！</title>
     <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
     <style>
         html,
@@ -201,7 +201,7 @@
         </div>
         <div id='noticeDiv'>
             <div class="noticeText">
-                <span><b>❗一本正经❗</b> 表情代表近14天阳性感染者居住地,不代表封闭管理或风控地区！</span>
+                <span><b>❗一本正经❗</b> 表情代表近14天阳性地址,不代表封闭地区！多日报告阳性的取最后一次日期！加载需要约30秒</span>
                 <!-- <span>公元3322年3月，馋佬胚综合征<i>(Epicurean Syndrome)</i>疫情在华亭县出现。感染者六神无主，饥渴难耐，只想不停吃鸡腿……</span> -->
             </div>            
         </div>
@@ -224,8 +224,9 @@
                 <span>这座城市所有的</span>
                 <span>医护人员和防疫人员</span>
                 <span>以及</span>
-                <span>新车间创客空间</span>
-                <span>**卿、**明、**宇、*瑶、*靖、*奕、*郑、*椿、*红、**怡、**阳、*悦、**喻、**彤、**越、**依、**嘉、*言、**清、**东、**欣、A*y、*🐒、*昂、*强、*M、*颖、**斌、L*s、E*i、S*e、*𝙮、B*g、**豪、**超、**捷、**健、*绢、*锟、*华、*兴、*枫、*菲、*格、*💞、*妙、**鹏、**敏、**慧、*🍡、*e、*子、*姐、*杭、**涵、**乂、**杰、*凯、*瑾、*赓、*兰、*欣、*羽、*莹等朋友们</span>
+                <span>新车间创客空间、</span>
+                <span>@lcb931023、@Erickus、</span>
+                <span>**卿、**明、**宇、*瑶、*靖、*奕、*郑、*椿、*红、**怡、**阳、*悦、**喻、**彤、**越、**依、**嘉、*言、**清、**东、**欣、A*y、*🐒、*昂、*强、*M、*颖、**斌、L*s、E*i、S*e、*𝙮、B*g、**豪、**超、**捷、**健、*绢、*锟、*华、*兴、*枫、*菲、*格、*💞、*妙、**鹏、**敏、**慧、*🍡、*e、*子、*姐、*杭、**涵、**乂、**杰、*凯、*瑾、*赓、*兰、*欣、*羽、*莹、*枫、*）、*刚、*凯、**东、*涛等朋友们</span>
                 <span><b>对炸鸡服务器的支持！</b></span>
                 <span>还要感谢</span>
                 <span>上海奉贤、上海徐汇、上海长宁、浦东发布、上海静安、上海嘉定、上海虹口、上海黄浦、上海松江、上海普陀、i金山、今日闵行、上海杨浦、上海崇明、绿色青浦、上海宝山微信公众平台提供数据支持！</span>
@@ -246,7 +247,7 @@
         }
     </script>
     <script type="text/javascript"
-        src="https://webapi.amap.com/maps?v=1.4.15&key=3c7d273d58c66c01fb9549449af5684e&plugin=AMap.Geocoder"></script>
+        src="https://webapi.amap.com/maps?v=1.4.15&key=fe7591e5d986287e3ac253e0621ad882&plugin=AMap.Geocoder"></script>
     <script type="text/javascript">
         var midRisks = ['嘉定区娄塘路760弄', '浦东新区听悦路920号', '闵行区虹梅南路1578号', '闵行区思源北路文俊路路口交通大学学生服务中心工地宿舍', '金山区学府路1811弄', '黄浦区局门后路9号', '黄浦区顺昌路612弄12号', '浦东新区北蔡镇鹏飞路411弄6号', '嘉定区江桥镇增建村柴中村民组', '闵行区梅陇镇许泾村八组', '崇明区长兴镇新港村15队', '崇明区长兴镇长明村21队', '浦东新区北蔡镇联勤村冯桥南宅', '浦东新区日京路88号', '嘉定区马陆镇康年路261号工地宿舍', '闵行区梅陇镇行南村三队', '闵行区华漕镇许浦村三队', '浦东新区康桥镇苗桥路935弄19号']
         var highRisks = []
@@ -306,7 +307,7 @@
         var addressAllow = true;
         var addressOnDisplay = false;
         // 加载坐标文件
-        readTextFile("https://tienzhao.github.io/covid-shanghai/positions.json", function(text){
+        readTextFile("https://tienzhao.github.io/covid-shanghai/positions_new.json", function(text){
         // readTextFile("positions.json", function(text){
             positionData = JSON.parse(text);
             // geoCode(positionData);
@@ -343,9 +344,11 @@
 
                 if (Object.keys(positionData).length) {
                     for (labelString in positionData){
-                        updateContent(positionData[labelString], labelString);
+                        let marker = updateContent(positionData[labelString], labelString);
+                        markers.push(marker);
                     }
                 }
+                map.add(markers);
             }            
         }
 
@@ -373,7 +376,7 @@
         //     }
         // }
 
-        function updateContent(lonLat, labelString) {
+        function updateContent(lonLat) {
             marker = new AMap.Marker({
                 position: lonLat,
                 offset: new AMap.Pixel(-20, -20)
@@ -389,29 +392,57 @@
             // markerImg.src = "images/goofy.png";
             markerContent.appendChild(markerImg);
 
+            // 通过透明度展示不同时间的新增地址
+            // 感谢Eric Hu的代码贡献！
+            if (lonLat.date != ""){
+                let currDate = new Date();
+                let publishDate = [lonLat.date.substring(4,4+2), lonLat.date.substring(6,6+2), lonLat.date.substring(0,4)] .join("/");
+                let deltaDays = (currDate.getTime() - Date.parse(publishDate)) / (1000*60*60*24);
+                deltaDays = Math.floor(deltaDays);
+                let alpha = 0.75;
+                let opacity = Math.max(14 - deltaDays + 1, 0) / 14 * alpha + (1 - alpha);
+                console.log(lonLat["label"], opacity)
+                markerImg.style.opacity = opacity;
+            } else {
+                markerImg.style.opacity = 1;
+            }
+            
+
             // 点标记中的文本
             var markerSpan = document.createElement("span");
             markerSpan.className = 'marker';
 
             // 中高风险地区，使用特殊样式标记
+            // let risky = false;
+            // if (midRisks.includes(labelString)){ 
+            //     labelString = '【中风险】 ' + labelString;
+            //     markerSpan.style["background-color"] = "#FFD700" ;
+            //     marker.setzIndex(101);
+            // };
+            // if (highRisks.includes(labelString)){ 
+            //     labelString = '【高风险】 ' + labelString;
+            //     markerSpan.style["background-color"] = "#FF4500" ;
+            //     marker.setzIndex(102);
+            // };
+
+            // 中高风险地区，使用特殊样式标记
             let risky = false;
-            if (midRisks.includes(labelString)){ 
-                labelString = '【中风险】 ' + labelString;
+            if (lonLat.risk == 'mid'){ 
                 markerSpan.style["background-color"] = "#FFD700" ;
                 marker.setzIndex(101);
             };
-            if (highRisks.includes(labelString)){ 
-                labelString = '【高风险】 ' + labelString;
+            if (lonLat.risk == 'high'){ 
                 markerSpan.style["background-color"] = "#FF4500" ;
                 marker.setzIndex(102);
             };
-            markerSpan.innerHTML = labelString;
+            markerSpan.innerHTML = lonLat.label;
             // 镜头范围太大时候，隐藏文本标记
             if (zoom < 13 || !addressAllow){ markerSpan.style["display"] = "none" };         
             markerContent.appendChild(markerSpan);
 
             marker.setContent(markerContent); //更新点标记内容       
-            marker.setMap(map);
+            // marker.setMap(map);
+            return marker
         }
 
         // 监听鼠标滚轮结束事件
@@ -453,79 +484,79 @@
         }
 
 
-        // 为了网络安全，避免API滥用
-        // 参考：https://www.cnblogs.com/moluy/p/14085173.html
-        function destroyMap() {
-            console.log('为了避免API滥用，本网页禁止控制台调试。\n你也会开发？一起为上海做贡献！\nhttps://github.com/TienZhao/covid-shanghai/')
-            map && map.destroy();
-            AMap = null;
-        }
-        //禁止F12键盘事件
-        document.addEventListener('keydown', function(event){
-           return 123 != event.keyCode || (event.returnValue = false)
-        });
-        //禁止右键、选择、复制
-        document.addEventListener('contextmenu', function(event){
-           return event.returnValue = false
-        })
-        //检测控制台高度变化
-        function resize(){
-            var threshold = 200;
-            var widthThreshold = window.outerWidth - window.innerWidth > threshold;
-            var heightThreshold = window.outerHeight - window.innerHeight > threshold;
-            if(widthThreshold || heightThreshold){
-                destroyMap();
-            }
-        }
-        window.addEventListener('resize', resize);
-        resize()
-        //监听toString方法和dom属性
-        var observerConsole = {
-            openCallback: function(){
-                destroyMap();
-                try {
-                    window.open("about:blank", "_self")
-                } catch(e) {
-                    var btn = document.createElement("button");
-                    btn.onclick = function() {
-                        window.open("about:blank", "_self")
-                    }
-                    btn.click()
-                }
-            },
-            observer: function(){
-                //这里使用dom元素，在打开控制台时才会计算id
-                var dom = document.createElement("div"), that = this;
-                Object.defineProperty(dom, "id", {
-                    get: function(){
-                        that.openCallback()
-                    }
-                })
-                //ie不支持console.table
-                //console.info(dom);
-                console.log(dom);
-            },
-            observerF: function(){
-                var obj = Object.create(null), t = Date.now(), that = this;
-                Object.defineProperty(obj, "a", {
-                    get: function() {
-                        if(Date.now() - t > 100){
-                            that.openCallback()
-                        }
-                    }
-                })
-                setInterval(function(){
-                    t = Date.now();
-                    (function(){})["constructor"]("debugger")();//debugger;
-                    console.log(obj.a);
-                }, 200)
-            },
-            init: function(){
-                var t = window.navigator.userAgent.toLowerCase();
-                t.indexOf("firefox") >= 0 ? this.observerF() : this.observer();
-            }
-        }
-        observerConsole.init();
+        // // 为了网络安全，避免API滥用
+        // // 参考：https://www.cnblogs.com/moluy/p/14085173.html
+        // function destroyMap() {
+        //     console.log('为了避免API滥用，本网页禁止控制台调试。\n你也会开发？一起为上海做贡献！\nhttps://github.com/TienZhao/covid-shanghai/')
+        //     map && map.destroy();
+        //     AMap = null;
+        // }
+        // //禁止F12键盘事件
+        // document.addEventListener('keydown', function(event){
+        //    return 123 != event.keyCode || (event.returnValue = false)
+        // });
+        // //禁止右键、选择、复制
+        // document.addEventListener('contextmenu', function(event){
+        //    return event.returnValue = false
+        // })
+        // //检测控制台高度变化
+        // function resize(){
+        //     var threshold = 200;
+        //     var widthThreshold = window.outerWidth - window.innerWidth > threshold;
+        //     var heightThreshold = window.outerHeight - window.innerHeight > threshold;
+        //     if(widthThreshold || heightThreshold){
+        //         destroyMap();
+        //     }
+        // }
+        // window.addEventListener('resize', resize);
+        // resize()
+        // //监听toString方法和dom属性
+        // var observerConsole = {
+        //     openCallback: function(){
+        //         destroyMap();
+        //         try {
+        //             window.open("about:blank", "_self")
+        //         } catch(e) {
+        //             var btn = document.createElement("button");
+        //             btn.onclick = function() {
+        //                 window.open("about:blank", "_self")
+        //             }
+        //             btn.click()
+        //         }
+        //     },
+        //     observer: function(){
+        //         //这里使用dom元素，在打开控制台时才会计算id
+        //         var dom = document.createElement("div"), that = this;
+        //         Object.defineProperty(dom, "id", {
+        //             get: function(){
+        //                 that.openCallback()
+        //             }
+        //         })
+        //         //ie不支持console.table
+        //         //console.info(dom);
+        //         console.log(dom);
+        //     },
+        //     observerF: function(){
+        //         var obj = Object.create(null), t = Date.now(), that = this;
+        //         Object.defineProperty(obj, "a", {
+        //             get: function() {
+        //                 if(Date.now() - t > 100){
+        //                     that.openCallback()
+        //                 }
+        //             }
+        //         })
+        //         setInterval(function(){
+        //             t = Date.now();
+        //             (function(){})["constructor"]("debugger")();//debugger;
+        //             console.log(obj.a);
+        //         }, 200)
+        //     },
+        //     init: function(){
+        //         var t = window.navigator.userAgent.toLowerCase();
+        //         t.indexOf("firefox") >= 0 ? this.observerF() : this.observer();
+        //     }
+        // }
+        // observerConsole.init();
 
     </script>
 </body>
