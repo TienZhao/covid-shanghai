@@ -3,18 +3,20 @@ import geo
 # -*- coding: utf-8 -*-
 
 # Read start_date.txt to end_date-1.txt
-dateArr = range(20220314, 20220312, -1)
+dateArr = range(20220326, 20220313, -1)
 addCount = 0
 addArr = []
 add_dict_arr = []
 # days_arr = []
 
 # Risky areas
-midRisks = ['嘉定区娄塘路760弄','浦东新区听悦路920号','闵行区虹梅南路1578号',
-            '闵行区思源北路文俊路路口交通大学学生服务中心工地宿舍','金山区学府路1811弄','黄浦区局门后路9号',
-            '黄浦区顺昌路612弄12号','浦东新区北蔡镇鹏飞路411弄6号', '嘉定区江桥镇增建村柴中村民组', '闵行区梅陇镇许泾村八组', '崇明区长兴镇新港村15队',
-            '崇明区长兴镇长明村21队', '浦东新区北蔡镇联勤村冯桥南宅', '浦东新区日京路88号', '嘉定区马陆镇康年路261号工地宿舍',
-            '闵行区梅陇镇行南村三队', '闵行区华漕镇许浦村三队', '浦东新区康桥镇苗桥路935弄19号']
+midRisks = ['嘉定区娄塘路760弄','金山区学府路1811弄','闵行区虹梅南路1578号',
+            '闵行区思源北路文俊路路口交通大学学生服务中心工地宿舍','浦东新区听悦路920号','黄浦区局门后路9号',
+            '黄浦区顺昌路612弄12号', '嘉定区马陆镇康年路261号工地宿舍', '崇明区长兴镇长明村21队',
+            '浦东新区北蔡镇联勤村冯桥南宅', '浦东新区日京路88号',
+            '浦东新区北蔡镇鹏飞路411弄6号', '嘉定区江桥镇增建村柴中村民组', '闵行区梅陇镇许泾村八组', '崇明区长兴镇新港村15队',
+            '闵行区梅陇镇行南村三队', '闵行区华漕镇许浦村三队', '浦东新区康桥镇苗桥路935弄19号',
+            '浦东新区御北路235号',]
 highRisks = []
 
 # Fix wrong plot locations by replacing the keyword
@@ -48,8 +50,8 @@ fixDict = {
 addArr.extend(midRisks)
 addArr.extend(highRisks)
 
-mid_dict_arr = [{"add": address, "date": "", "risk": "mid", "label": str("【中风险】" + address)} for address in midRisks]
-high_dict_arr = [{"add": address, "date": "", "risk": "high", "label": str("【高风险】" + address)} for address in highRisks]
+mid_dict_arr = [{"add": address, "date": "", "risk": "mid", "label": str("【中风险】" + address), "opacity": 1} for address in midRisks]
+high_dict_arr = [{"add": address, "date": "", "risk": "high", "label": str("【高风险】" + address), "opacity": 1} for address in highRisks]
 add_dict_arr.extend(mid_dict_arr)
 add_dict_arr.extend(high_dict_arr)
 
@@ -79,8 +81,12 @@ for date in dateArr:
             if addStr not in addArr:
                 addArr.append(addStr)
                 date_in_label = " （" + str(date)[4:6] + "-" + str(date)[6:8] + "）"
-                add_dict_arr.append({"add": addStr, "date": str(date), "risk": "none", "label": str(addStr + date_in_label)})
+                opacity = 0.85 - (dateArr[0] - date) * 0.05
+                if opacity == 0.85:
+                    opacity = 1
+                add_dict_arr.append({"add": addStr, "date": str(date), "risk": "none", "label": str(addStr + date_in_label), "opacity": opacity})
                 # one_day_arr.append({"add": addStr, "style": dateArr[0] - date, "name": str(addStr + date_in_label)})
+print(add_dict_arr)
 
     # days_arr.append(one_day_arr)
 

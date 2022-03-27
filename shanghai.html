@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
     <!-- <title>馋佬胚综合征疫情地图</title> -->
-    <title>3月26日，上海加油！</title>
+    <title>3月27日，上海加油！</title>
     <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
     <style>
         html,
@@ -210,11 +210,19 @@
                 <span>本站仅供数据可视化学习</span>               
                 <span>完全不保证数据真实准确</span>
                 <!-- <span>本页面仅供数据可视化学习，完全不保证数据真实准确，数据源于上海发布。如果您发现了错误和建议，欢迎<a href="https://wj.qq.com/s2/9880542/aac8/">反馈</a>！</span> -->
+                <span><a href="https://github.com/TienZhao/covid-shanghai">Github Repo</a> | <a href="https://wj.qq.com/s2/9880542/aac8/">意见反馈</a></span>
+                <span><b>在这个茫然的春天</b></span>
+                <span><b>给生活一点盼头</b></span>
+                <span><b>新车间线上开放夜</b></span>
+                <span><b>3月30日晚，不见不散</b></span>
+            </div>
+            <img src="https://tienzhao.github.io/covid-shanghai/images/event_0330.jpg" width="240"/>
+            <div class='donateText'> 
                 <span><b>打赏十块</b></span>
                 <span><b>给作者投喂鸡腿！</b></span>
                 <span><b>Donate ￥10</b></span>
                 <span><b>Power our server!</b></span>
-                <span><a href="https://github.com/TienZhao/covid-shanghai">Github Repo</a> | <a href="https://wj.qq.com/s2/9880542/aac8/">意见反馈</a></span>
+                <!-- <span><a href="https://github.com/TienZhao/covid-shanghai">Github Repo</a> | <a href="https://wj.qq.com/s2/9880542/aac8/">意见反馈</a></span> -->
             </div>
             <!-- <img src="images/donate2.jpg" width="326"/> -->
             <img src="https://tienzhao.github.io/covid-shanghai/images/donation2.jpg" width="240"/>
@@ -249,7 +257,7 @@
     <script type="text/javascript"
         src="https://webapi.amap.com/maps?v=1.4.15&key=fe7591e5d986287e3ac253e0621ad882&plugin=AMap.Geocoder"></script>
     <script type="text/javascript">
-        var midRisks = ['嘉定区娄塘路760弄', '浦东新区听悦路920号', '闵行区虹梅南路1578号', '闵行区思源北路文俊路路口交通大学学生服务中心工地宿舍', '金山区学府路1811弄', '黄浦区局门后路9号', '黄浦区顺昌路612弄12号', '浦东新区北蔡镇鹏飞路411弄6号', '嘉定区江桥镇增建村柴中村民组', '闵行区梅陇镇许泾村八组', '崇明区长兴镇新港村15队', '崇明区长兴镇长明村21队', '浦东新区北蔡镇联勤村冯桥南宅', '浦东新区日京路88号', '嘉定区马陆镇康年路261号工地宿舍', '闵行区梅陇镇行南村三队', '闵行区华漕镇许浦村三队', '浦东新区康桥镇苗桥路935弄19号']
+        var midRisks = ['嘉定区娄塘路760弄', '金山区学府路1811弄', '闵行区虹梅南路1578号', '闵行区思源北路文俊路路口交通大学学生服务中心工地宿舍', '浦东新区听悦路920号', '黄浦区局门后路9号', '黄浦区顺昌路612弄12号', '嘉定区马陆镇康年路261号工地宿舍', '崇明区长兴镇长明村21队', '浦东新区北蔡镇联勤村冯桥南宅', '浦东新区日京路88号', '浦东新区北蔡镇鹏飞路411弄6号', '嘉定区江桥镇增建村柴中村民组', '闵行区梅陇镇许泾村八组', '崇明区长兴镇新港村15队', '闵行区梅陇镇行南村三队', '闵行区华漕镇许浦村三队', '浦东新区康桥镇苗桥路935弄19号', '浦东新区御北路235号']
         var highRisks = []
         
         // var markerObjs = {};
@@ -400,9 +408,9 @@
                 let deltaDays = (currDate.getTime() - Date.parse(publishDate)) / (1000*60*60*24);
                 deltaDays = Math.floor(deltaDays);
                 let alpha = 0.75;
-                let opacity = Math.max(14 - deltaDays + 1, 0) / 14 * alpha + (1 - alpha);
-                console.log(lonLat["label"], opacity)
-                markerImg.style.opacity = opacity;
+                // let opacity = Math.max(14 - deltaDays + 1, 0) / 14 * alpha + (1 - alpha);
+                // console.log(lonLat["label"], opacity)
+                markerImg.style.opacity = lonLat.opacity;
             } else {
                 markerImg.style.opacity = 1;
             }
