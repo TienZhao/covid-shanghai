@@ -202,22 +202,25 @@
         <div id='noticeDiv'>
             <div class="noticeText">
                 <span><b>❗一本正经❗</b> 表情代表近14天阳性地址,不代表封闭地区！几次报告阳性的，取最后的日期！加载需要约30秒。</span>
+                <!-- <span><b>❗一本正经❗</b> 表情代表近14天阳性地址,不代表封闭地区！几次报告阳性的，取最后的日期！加载需要约30秒。</span> -->
                 <!-- <span>公元3322年3月，馋佬胚综合征<i>(Epicurean Syndrome)</i>疫情在华亭县出现。感染者六神无主，饥渴难耐，只想不停吃鸡腿……</span> -->
             </div>            
         </div>
         <div id='donateDiv' style="display: none;">
+            <div class='donateText'>
+                <span><b>在这个茫然的春天</b></span>
+                <span><b>给生活一点盼头</b></span>
+                <span><b>下周三新车间线上开放夜</b></span>
+                <span><b><a href="https://yoopay.cn/event/93875362">点击报名，免费参与</a></b></span>
+            </div>
+            <img src="https://tienzhao.github.io/covid-shanghai/images/event_0330.jpg" width="240"/>
             <div class='donateText'> 
+                <span><b>❗一本正经❗</b></span>
+                <span>展示的是14天阳性地址，不代表封闭地区</span>
                 <span>本站仅供数据可视化学习</span>               
                 <span>完全不保证数据真实准确</span>
                 <!-- <span>本页面仅供数据可视化学习，完全不保证数据真实准确，数据源于上海发布。如果您发现了错误和建议，欢迎<a href="https://wj.qq.com/s2/9880542/aac8/">反馈</a>！</span> -->
                 <span><a href="https://github.com/TienZhao/covid-shanghai">Github Repo</a> | <a href="https://wj.qq.com/s2/9880542/aac8/">意见反馈</a></span>
-                <span><b>在这个茫然的春天</b></span>
-                <span><b>给生活一点盼头</b></span>
-                <span><b>新车间线上开放夜</b></span>
-                <span><b>3月30日晚，不见不散</b></span>
-            </div>
-            <img src="https://tienzhao.github.io/covid-shanghai/images/event_0330.jpg" width="240"/>
-            <div class='donateText'> 
                 <span><b>打赏十块</b></span>
                 <span><b>给作者投喂鸡腿！</b></span>
                 <span><b>Donate ￥10</b></span>
@@ -387,7 +390,7 @@
         function updateContent(lonLat) {
             marker = new AMap.Marker({
                 position: lonLat,
-                offset: new AMap.Pixel(-20, -20)
+                offset: new AMap.Pixel(-13, -13)
             });
 
             // 自定义点标记内容
@@ -396,18 +399,19 @@
             // 点标记中的图标
             var markerImg = document.createElement("img");
             markerImg.className = "markerlnglat";
-            markerImg.src = "images/cheers.png";
+            // markerImg.src = "images/cheers.png";
             // markerImg.src = "images/goofy.png";
+            markerImg.src = "cherry_blossom_small.png";
             markerContent.appendChild(markerImg);
 
             // 通过透明度展示不同时间的新增地址
             // 感谢Eric Hu的代码贡献！
-            if (lonLat.date != ""){
-                let currDate = new Date();
-                let publishDate = [lonLat.date.substring(4,4+2), lonLat.date.substring(6,6+2), lonLat.date.substring(0,4)] .join("/");
-                let deltaDays = (currDate.getTime() - Date.parse(publishDate)) / (1000*60*60*24);
-                deltaDays = Math.floor(deltaDays);
-                let alpha = 0.75;
+            if (lonLat.opacity != ""){
+                // let currDate = new Date();
+                // let publishDate = [lonLat.date.substring(4,4+2), lonLat.date.substring(6,6+2), lonLat.date.substring(0,4)] .join("/");
+                // let deltaDays = (currDate.getTime() - Date.parse(publishDate)) / (1000*60*60*24);
+                // deltaDays = Math.floor(deltaDays);
+                // let alpha = 0.75;
                 // let opacity = Math.max(14 - deltaDays + 1, 0) / 14 * alpha + (1 - alpha);
                 // console.log(lonLat["label"], opacity)
                 markerImg.style.opacity = lonLat.opacity;
@@ -445,7 +449,7 @@
             };
             markerSpan.innerHTML = lonLat.label;
             // 镜头范围太大时候，隐藏文本标记
-            if (zoom < 13 || !addressAllow){ markerSpan.style["display"] = "none" };         
+            if (zoom < 14 || !addressAllow){ markerSpan.style["display"] = "none" };         
             markerContent.appendChild(markerSpan);
 
             marker.setContent(markerContent); //更新点标记内容       
@@ -457,14 +461,14 @@
         function mapZoomend(){
             zoom = map.getZoom()
             let markerElements = document.getElementsByClassName("marker");
-            if (zoom < 13 || !addressAllow){
+            if (zoom < 14 || !addressAllow){
                 if (addressOnDisplay){
                     addressOnDisplay = false; 
                     for(let m = 0; m < markerElements.length; m++) {
                         markerElements[m].style["display"] = "none";
                     }
                 }
-            } else if (zoom >= 13 && addressAllow) {
+            } else if (zoom >= 14 && addressAllow) {
                 if (!addressOnDisplay){
                     addressOnDisplay = true; 
                     for(let m = 0; m < markerElements.length; m++) {
