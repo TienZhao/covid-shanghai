@@ -63,8 +63,8 @@
         }
         .marker {
             position: absolute;
-            top: 8px;
-            left: 40px;
+            top: 3px;
+            left: 30px;
             color: black;
             padding: 4px 10px;
             box-shadow: 1px 1px 1px rgba(10, 10, 10, .2);
@@ -389,9 +389,10 @@
         // }
 
         function updateContent(lonLat) {
+            // 定义icon和中心点的坐标，偏差值为-50%*图片大小
             marker = new AMap.Marker({
                 position: lonLat,
-                offset: new AMap.Pixel(0, -4)
+                 anchor: 'center'
             });
 
             // 自定义点标记内容
