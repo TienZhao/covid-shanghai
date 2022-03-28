@@ -187,7 +187,7 @@
     <div id='result' width='100%'>
         <div id='buttonRow'>
             <!-- <button onclick='geoCode()' class='btn'>哪有馋佬胚？</button> -->
-            <button onclick='geoCode()' class='btn'>上海加油</button>
+            <button onclick='geoCode()' class='btn'>标记病例</button>
             <!-- <button onclick='btnShare()' class='btn'>分享</button> -->
             <button onclick='btnDonate()' class='subbtn'>支持</button>
             <!-- <button onclick='btnAd()' class='subbtn'>领券</button> -->
@@ -391,7 +391,7 @@
         function updateContent(lonLat) {
             marker = new AMap.Marker({
                 position: lonLat,
-                offset: new AMap.Pixel(-13, -13)
+                offset: new AMap.Pixel(-8, -8)
             });
 
             // 自定义点标记内容
