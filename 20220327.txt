@@ -2377,7 +2377,9 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于嘉定区铜川路2688弄，
 
-居住于嘉定区嘉定工业区灯塔村、陆渡村，
+居住于嘉定区嘉定工业区灯塔村，
+
+居住于嘉定区嘉定工业区陆渡村，
 
 居住于嘉定区嘉定镇街道桃园新村，
 
@@ -2509,7 +2511,7 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于松江区涞寅路658弄，
 
-居住于松江区乐都西路1155弄、
+居住于松江区乐都西路1155弄，
 
 居住于松江区乐都西路1455弄，
 
