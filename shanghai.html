@@ -189,7 +189,7 @@
             <!-- <button onclick='geoCode()' class='btn'>哪有馋佬胚？</button> -->
             <button onclick='geoCode()' class='btn'>标记病例</button>
             <!-- <button onclick='btnShare()' class='btn'>分享</button> -->
-            <button onclick='btnDonate()' class='subbtn'>夜！</button>
+            <button onclick='btnDonate()' class='subbtn'>支持</button>
             <!-- <button onclick='btnAd()' class='subbtn'>领券</button> -->
             <button onclick='btnShare()' class='subbtn'>分享</button>
             <button onclick='btnAddress()' class='subbtn'>地址</button>
@@ -466,14 +466,14 @@
         function mapZoomend(){
             zoom = map.getZoom()
             let markerElements = document.getElementsByClassName("marker");
-            if (zoom < 14 || !addressAllow){
+            if (zoom < 16 && !addressAllow){
                 if (addressOnDisplay){
                     addressOnDisplay = false; 
                     for(let m = 0; m < markerElements.length; m++) {
                         markerElements[m].style["display"] = "none";
                     }
                 }
-            } else if (zoom >= 14 && addressAllow) {
+            } else if (zoom >= 16 && addressAllow) {
                 if (!addressOnDisplay){
                     addressOnDisplay = true; 
                     for(let m = 0; m < markerElements.length; m++) {
