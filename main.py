@@ -3,7 +3,13 @@ import geo
 # -*- coding: utf-8 -*-
 
 # Read start_date.txt to end_date-1.txt
-dateArr = range(20220331, 20220318, -1)
+lastDate = 20220401
+mockDateArr = range(lastDate, lastDate-14, -1)
+dateArr = []
+for date in mockDateArr:
+	if date < 20220401:
+		date -= 69
+	dateArr.append(date)
 addCount = 0
 addArr = []
 add_dict_arr = []
