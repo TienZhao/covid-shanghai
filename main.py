@@ -3,7 +3,7 @@ import geo
 # -*- coding: utf-8 -*-
 
 # Read start_date.txt to end_date-1.txt
-lastDate = 20220407
+lastDate = 20220408
 mockDateArr = range(lastDate, lastDate-14, -1)
 dateArr = []
 for date in mockDateArr:

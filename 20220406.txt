@@ -2993,7 +2993,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于浦东新区邹平路191号工地生活区。
 
-居住于黄浦区（滑动查看更多↓）
 
 居住于黄浦区白渡路258弄，
 
@@ -3957,7 +3956,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于黄浦区自忠路450号。
 
-居住于静安区（滑动查看更多↓）
 
 居住于静安区安远路363号，
 
@@ -4413,7 +4411,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于静安区中兴路1385弄。
 
-居住于徐汇区（滑动查看更多↓）
 
 居住于徐汇区安福路53弄，
 
@@ -5093,7 +5090,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于徐汇区中山南二路999弄。
 
-居住于长宁区（滑动查看更多↓）
 
 居住于长宁区安龙路698弄，
 
@@ -5483,7 +5479,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于长宁区遵义路829号。
 
-居住于普陀区（滑动查看更多↓）
 
 居住于普陀区安远路16弄，
 
@@ -6061,7 +6056,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于普陀区棕榈路451弄。
 
-居住于虹口区（滑动查看更多↓）
 
 居住于虹口区安国路21号，
 
@@ -6605,7 +6599,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于虹口区周家嘴路981弄。
 
-居住于杨浦区（滑动查看更多↓）
 
 居住于杨浦区爱国二村，
 
@@ -7185,7 +7178,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于杨浦区中原路99弄，
 
-居住于宝山区（滑动查看更多↓）
 
 居住于宝山区上大路688号，
 
@@ -7833,7 +7825,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于宝山区泗塘四村。
 
-居住于闵行区（滑动查看更多↓）
 
 居住于闵行区爱博四村，
 
@@ -8477,7 +8468,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于闵行区紫藤一村。
 
-居住于嘉定区（滑动查看更多↓）
 
 居住于嘉定区爱特路68弄，
 
@@ -9405,7 +9395,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于嘉定区朱家村。
 
-居住于金山区（滑动查看更多↓）
 
 居住于金山区板桥西路1709号
 
@@ -9473,7 +9462,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于金山区周栅村
 
-居住于松江区（滑动查看更多↓）
 
 居住于松江区庵前小区，
 
@@ -9949,7 +9937,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于松江区庄家村。
 
-居住于青浦区（滑动查看更多↓）
 
 居住于青浦区白鹤村，
 
@@ -10333,7 +10320,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于青浦区诸陆西路852号。
 
-居住于奉贤区（滑动查看更多↓）
 
 居住于奉贤区安邬路188号，
 
@@ -10485,7 +10471,6 @@ C:\Users\tienz\AppData\Local\Programs\Python\Python37\python.exe C:/HelloWorld/c
 
 居住于奉贤区资福村。
 
-居住于崇明区（滑动查看更多↓）
 
 居住于崇明区江南大道，
 

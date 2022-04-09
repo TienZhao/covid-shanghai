@@ -1,5 +1,5 @@
 import re
-path = 'C:\\HelloWorld\\covid-shanghai\\20220407.txt'
+path = 'C:\\HelloWorld\\covid-shanghai\\20220408.txt'
 district = ""
 with open(path, 'r+', encoding='utf-8') as f:
 
@@ -11,7 +11,7 @@ with open(path, 'r+', encoding='utf-8') as f:
         if len(matchArr) > 0:
             district = matchArr[0]
         else:
-            if len(line) > 2 and len(line) < 15:
+            if len(line) > 2 and len(line) < 25:
                 new_line = '居住于' + district + '区' + line
                 print(new_line)
 
