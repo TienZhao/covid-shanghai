@@ -192,7 +192,7 @@
             <button onclick='btnDonate()' class='subbtn'>支持</button>
             <!-- <button onclick='btnAd()' class='subbtn'>领券</button> -->
             <button onclick='btnShare()' class='subbtn'>分享</button>
-            <button onclick='btnAddress()' class='subbtn'>地址</button>
+            <!-- <button onclick='btnAddress()' class='subbtn'>地址</button> -->
 
             <!-- <button onclick='geoCode()' class='btn'>运行😷</button>
             <button onclick='btnDonate()' class='subbtn'>🙌</button>
@@ -373,20 +373,20 @@
                 // 使用海量点在地图上做标记
                 var style = [{
                     url: 'images/ewe_small.png',
-                    anchor: new AMap.Pixel(16, 16),
-                    size: new AMap.Size(31, 31)
+                    anchor: new AMap.Pixel(9, 9),
+                    size: new AMap.Size(17, 17)
                 }, {
                     url: 'images/red_square_small.png',
-                    anchor: new AMap.Pixel(13, 13),
-                    size: new AMap.Size(25, 25)
+                    anchor: new AMap.Pixel(9, 9),
+                    size: new AMap.Size(17, 17)
                 }, {
                     url: 'images/yellow_square_small.png',
-                    anchor: new AMap.Pixel(13, 13),
-                    size: new AMap.Size(25, 25)
+                    anchor: new AMap.Pixel(9, 9),
+                    size: new AMap.Size(17, 17)
                 }, {
                     url: 'images/green_square_small.png',
-                    anchor: new AMap.Pixel(13, 13),
-                    size: new AMap.Size(25, 25)
+                    anchor: new AMap.Pixel(9, 9),
+                    size: new AMap.Size(17, 17)
                 }
                 ];
 
@@ -401,6 +401,11 @@
                 var marker = new AMap.Marker({content: ' ', map: map});
 
                 mass.on('mouseover', function (e) {
+                    marker.setPosition(e.data.lnglat);
+                    marker.setLabel({content: e.data.name})
+                });
+
+                mass.on('touchstart', function (e) {
                     marker.setPosition(e.data.lnglat);
                     marker.setLabel({content: e.data.name})
                 });
