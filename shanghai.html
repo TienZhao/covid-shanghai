@@ -201,8 +201,8 @@
         </div>
         <div id='noticeDiv'>
             <div class="noticeText">
-                <span>听说顾村的樱花很美</span>
-                <span>它也在赛博空间为你静静绽放</span>
+                <!-- <span>听说顾村的樱花很美</span> -->
+                <!-- <span>它也在赛博空间为你静静绽放</span> -->
                 <span>4月10日新增914+25173，较昨日+5%</span>
                 <span>近14天累计6918+183528，较昨日+13%</span>
                 <!-- <span><b>❗一本正经❗</b> 表情代表近14天阳性地址,不代表封闭地区！几次报告阳性的，取最后的日期！加载需要约30秒。</span> -->
@@ -243,7 +243,7 @@
                 <span>以及</span>
                 <span>新车间创客空间、</span>
                 <span>@lcb931023、@Erickus、</span>
-                <span>**卿、**明、**宇、*瑶、*靖、*奕、*郑、*椿、*红、**怡、**阳、*悦、**喻、**彤、**越、**依、**嘉、*言、**清、**东、**欣、A*y、*🐒、*昂、*强、*M、*颖、**斌、L*s、E*i、S*e、*𝙮、B*g、**豪、**超、**捷、**健、*绢、*锟、*华、*兴、*枫、*菲、*格、*💞、*妙、**鹏、**敏、**慧、*🍡、*e、*子、*姐、*杭、**涵、**乂、**杰、*凯、*瑾、*赓、*兰、*欣、*羽、*莹、*枫、*）、*刚、*凯、**东、*涛、**赟、**南、**龙、**逸、*叕、T*m、*虹、*飞、**芬、**昊等朋友们</span>
+                <span>**卿、**明、**宇、*瑶、*靖、*奕、*郑、*椿、*红、**怡、**阳、*悦、**喻、**彤、**越、**依、**嘉、*言、**清、**东、**欣、A*y、*🐒、*昂、*强、*M、*颖、**斌、L*s、E*i、S*e、*𝙮、B*g、**豪、**超、**捷、**健、*绢、*锟、*华、*兴、*枫、*菲、*格、*💞、*妙、**鹏、**敏、**慧、*🍡、*e、*子、*姐、*杭、**涵、**乂、**杰、*凯、*瑾、*赓、*兰、*欣、*羽、*莹、*枫、*）、*刚、*凯、**东、*涛、**赟、**南、**龙、**逸、*叕、T*m、*虹、*飞、**芬、**昊、*权等朋友们</span>
                 <span><b>对炸鸡服务器的支持！</b></span>
                 <span>还要感谢</span>
                 <span>上海奉贤、上海徐汇、上海长宁、浦东发布、上海静安、上海嘉定、上海虹口、上海黄浦、上海松江、上海普陀、i金山、今日闵行、上海杨浦、上海崇明、绿色青浦、上海宝山微信公众平台提供数据支持！</span>
@@ -252,8 +252,8 @@
         </div>
     </div>
     <!-- 流量统计 -->
-    <script async src="//static.getclicky.com/101358038.js"></script>
-    <noscript><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101358038ns.gif" /></noscript>
+    <script async src="https://static.getclicky.com/101358038.js"></script>
+    <noscript><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/101358038ns.gif" /></noscript>
     <!-- <script async src="//static.getclicky.com/101358152.js"></script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101358152ns.gif" /></p></noscript>
     <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
@@ -264,7 +264,9 @@
         }
     </script>
     <script type="text/javascript"
-        src="https://webapi.amap.com/maps?v=1.4.15&key=fe7591e5d986287e3ac253e0621ad882&plugin=AMap.Geocoder"></script>
+        src="https://webapi.amap.com/maps?v=1.4.15&key=3c7d273d58c66c01fb9549449af5684e&plugin=AMap.Geocoder"></script>
+    <script type="text/javascript" src='positives.js'></script>
+    <script type="text/javascript" src='lockdown.js'></script>
     <script type="text/javascript">
         var midRisks = ['黄浦区顺昌路612弄12号', '嘉定区马陆镇康年路261号工地宿舍', '崇明区长兴镇长明村21队', '浦东新区北蔡镇联勤村冯桥南宅', '浦东新区日京路88号', '浦东新区北蔡镇鹏飞路411弄6号', '嘉定区江桥镇增建村柴中村民组', '闵行区梅陇镇许泾村八组', '崇明区长兴镇新港村15队', '闵行区梅陇镇行南村三队', '闵行区华漕镇许浦村三队', '浦东新区康桥镇苗桥路935弄19号', '浦东新区御北路235号']
         var highRisks = []
@@ -348,7 +350,7 @@
                 marked = true
                 map.remove(markers);
                 markers = [];
-                let step = 10;
+                // let step = 10;
                 // 旧方法，将中高风险地址添加到地址列表中
                 // for (midRiskAdd of midRisks) {
                 //     if(!adds.includes(midRiskAdd)){ adds.push(midRiskAdd); }
@@ -359,14 +361,117 @@
                 // 旧方法
                 // stepCode(adds, step);
 
-                if (Object.keys(positionData).length) {
-                    for (labelString in positionData){
-                        let marker = updateContent(positionData[labelString], labelString);
-                        markers.push(marker);
-                    }
+                // 04-11
+                // if (Object.keys(positionData).length) {
+                //     for (labelString in positionData){
+                //         let marker = updateContent(positionData[labelString], labelString);
+                //         markers.push(marker);
+                //     }
+                // }
+                // map.add(markers);
+
+                // 使用海量点在地图上做标记
+                var style = [{
+                    url: 'images/ewe_small.png',
+                    anchor: new AMap.Pixel(16, 16),
+                    size: new AMap.Size(31, 31)
+                }, {
+                    url: 'images/red_square_small.png',
+                    anchor: new AMap.Pixel(13, 13),
+                    size: new AMap.Size(25, 25)
+                }, {
+                    url: 'images/yellow_square_small.png',
+                    anchor: new AMap.Pixel(13, 13),
+                    size: new AMap.Size(25, 25)
+                }, {
+                    url: 'images/green_square_small.png',
+                    anchor: new AMap.Pixel(13, 13),
+                    size: new AMap.Size(25, 25)
                 }
-                map.add(markers);
+                ];
+
+                massData = positives.concat(redZone).concat(yellowZone).concat(greenZone)
+                var mass = new AMap.MassMarks(massData, {
+                    opacity: 1,
+                    zIndex: 111,
+                    cursor: 'pointer',
+                    style: style
+                });
+
+                var marker = new AMap.Marker({content: ' ', map: map});
+
+                mass.on('mouseover', function (e) {
+                    marker.setPosition(e.data.lnglat);
+                    marker.setLabel({content: e.data.name})
+                });
+
+                mass.setMap(map);
+
+                drawBounds()
             }            
+        }
+
+
+        // 加载行政区文件
+        var districtData = {};
+        readTextFile("https://tienzhao.github.io/covid-shanghai/districts.json", function(text){
+            districtData = JSON.parse(text);
+        });
+        function drawBounds() {
+            // 离线获取行政区划方法
+            // 加载行政区划插件
+            // if(!district){
+            //     //实例化DistrictSearch
+            //     var opts = {
+            //         subdistrict: 0,   //获取边界不需要返回下级行政区
+            //         extensions: 'all',  //返回行政区边界坐标组等具体信息
+            //         level: 'district'  //查询行政级别为 市
+            //     };
+            //     district = new AMap.DistrictSearch(opts);
+            // }
+            //行政区查询
+            // district.setLevel('district');
+
+
+            // let redDistricts = ["黄浦区","徐汇区","长宁区","静安区","普陀区","虹口区","杨浦区","闵行区","宝山区","嘉定区","浦东新区","金山区","松江区","青浦区","奉贤区","崇明区"]
+            let redDistricts = ["黄浦区","长宁区","静安区","普陀区","虹口区","杨浦区","闵行区"]
+            //生成行政区划polygon            
+            for (d of redDistricts){
+                polygons = [];
+                var bounds = districtData[d];
+                // 一个行政区可能有多条不相连的边界线，如岛屿，需要再次遍历分别绘图。
+                for (bound of bounds) {                    
+                    var polygon = new AMap.Polygon({
+                        strokeWeight: 1,
+                        path: bound,
+                        fillOpacity: 0.2,
+                        fillColor: '#dd3333',
+                        strokeColor: '#aa0000',
+                        zIndex: 50,
+                    });
+                    polygons.push(polygon);
+                }
+                map.add(polygons);
+            }
+            let greenDistricts = ["嘉定区","金山区","奉贤区","崇明区"]
+            //生成行政区划polygon            
+            for (d of greenDistricts){
+                polygons = [];
+                var bounds = districtData[d];
+                // 一个行政区可能有多条不相连的边界线，如岛屿，需要再次遍历分别绘图。
+                for (bound of bounds) {                    
+                    var polygon = new AMap.Polygon({
+                        strokeWeight: 1,
+                        path: bound,
+                        fillOpacity: 0.2,
+                        fillColor: '#33dd33',
+                        strokeColor: '#00aa00',
+                        zIndex: 50,
+                    });
+                    polygons.push(polygon);
+                }
+                map.add(polygons);
+            }
         }
 
         // 旧方法
@@ -577,7 +682,7 @@
         }
         observerConsole.init();
 
-    </script>
-</body>
-</html>
+//     </script>
+// </body>
+// </html>
 

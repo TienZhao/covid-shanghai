@@ -127,17 +127,20 @@ updateFile('shanghai.html', midRisks, highRisks)
 #     json.dump(res, f, ensure_ascii=False)
 #     f.close()
 
-res = geo.getGeoDictArr(add_dict_arr)
-jsonPath = 'positions_new.json'
-with open(jsonPath, 'w', encoding='utf-8') as f:
-    json.dump(res, f, ensure_ascii=False)
-    f.close()
-
-# res = geo.getGeoDaysArr(days_arr)
-# jsonPath = 'positions_new.js'
+# res = geo.getGeoDictArr(add_dict_arr)
+# jsonPath = 'positions_new.json'
 # with open(jsonPath, 'w', encoding='utf-8') as f:
-#     f.write("var addreses = " + str(res))
+#     json.dump(res, f, ensure_ascii=False)
 #     f.close()
+
+res = geo.getMassGeoDictArr(add_dict_arr)
+addLines = [str(r) + ",\n" for r in res]
+jsonPath = 'positives.js'
+with open(jsonPath, 'w', encoding='utf-8') as f:
+    f.write("var positives = [\n")
+    f.writelines(addLines)
+    f.write("]\n")
+    f.close()
 
 
 print(addArr)
