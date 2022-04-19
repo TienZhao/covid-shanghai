@@ -1,7 +1,7 @@
 import os, re, json
 import geo
 
-txt_path = "20220416.txt"
+txt_path = "20220417.txt"
 
 fr = open(txt_path, 'r', encoding='UTF-8')
 data = fr.read()
@@ -17,7 +17,8 @@ for i in range(len(passage)):
             district = matchArr[0]
             continue
 
-    if line.find("滑动查看更多") > 0 or line.find("分别居住于") > 0 or line.find("终末消毒措施") > 0:
+    if line.find("滑动查看更多") > 0 or line.find("分别居住于") > 0 \
+            or line.find("终末消毒措施") > 0 or line.find("均已") > 0:
         continue
 
     if len(line) > 2:
