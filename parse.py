@@ -1,7 +1,7 @@
 import os, re, json
 import geo
 
-txt_path = "20220418.txt"
+txt_path = "20220419.txt"
 
 fr = open(txt_path, 'r', encoding='UTF-8')
 data = fr.read()
