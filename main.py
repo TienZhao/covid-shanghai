@@ -1,15 +1,20 @@
-import re, json
+import re, json, datetime
 import geo
 # -*- coding: utf-8 -*-
 
-# Read start_date.txt to end_date-1.txt
-lastDate = 20220422
-mockDateArr = range(lastDate, lastDate-14, -1)
-dateArr = []
-for date in mockDateArr:
-	if date < 20220401:
-		date -= 69
-	dateArr.append(date)
+
+# make an array starting from today to today - 14 days
+def makeDateArray():
+    date = datetime.date.today()
+    date = date - datetime.timedelta(days=1)
+    dateArray = []
+    for i in range(0, 14):
+        dateArray.append(date.strftime('%Y%m%d'))
+        date = date - datetime.timedelta(days=1)
+    return dateArray
+
+dateArr = makeDateArray()
+
 addCount = 0
 addArr = []
 add_dict_arr = []
@@ -87,7 +92,9 @@ for date in dateArr:
             if addStr not in addArr:
                 addArr.append(addStr)
                 date_in_label = " （" + str(date)[4:6] + "-" + str(date)[6:8] + "）"
-                opacity = 0.85 - (dateArr[0] - date) * 0.05
+                firstDate = datetime.datetime.strptime(dateArr[0], "%Y%m%d")
+                currentDate = datetime.datetime.strptime(date, "%Y%m%d")
+                opacity = 0.85 - (firstDate - currentDate).days * 0.05
                 if opacity == 0.85:
                     opacity = 1
                 add_dict_arr.append({"add": addStr, "date": str(date), "risk": "none", "label": str(addStr + date_in_label), "opacity": opacity})
@@ -95,6 +102,10 @@ for date in dateArr:
 print(add_dict_arr)
 
     # days_arr.append(one_day_arr)
+
+
+
+# dateArr = [datetime.datetime.strptime(d, '%Y%m%d').date() for d in dateArr]
 
 
 def updateFile(path, midRisks, highRisks):
