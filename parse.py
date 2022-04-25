@@ -1,7 +1,11 @@
-import os, re, json
+import os, re, json, datetime
 import geo
 
-txt_path = "20220423.txt"
+date = datetime.date.today() - datetime.timedelta(days=1)
+date_str = date.strftime('%Y%m%d')
+txt_path = date_str + ".txt"
+# txt_path = "20220424.txt"
+print(txt_path)
 
 fr = open(txt_path, 'r', encoding='UTF-8')
 data = fr.read()
