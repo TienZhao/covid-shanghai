@@ -13,6 +13,7 @@ passage = data.split('\n')
 
 level = ""
 district = ""
+body = False
 for i in range(len(passage)):
     line = passage[i].strip()
     if len(line) < 5:
@@ -25,7 +26,14 @@ for i in range(len(passage)):
             or line.find("终末消毒措施") > 0 or line.find("均已") > 0:
         continue
 
-    if len(line) > 2:
+    if line.find("资料：") >= 0 :
+        break
+
+    if line.find("各区信息如下：") >= 0:
+        body = True
+        continue
+
+    if body and len(line) > 2:
         address = district
         if line[-1:] in ["、", "，", ",", "。"]:
             address = address + line[:-1] + "，"
