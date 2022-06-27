@@ -6,9 +6,9 @@ import geo
 # make an array starting from today to today - 14 days
 def makeDateArray():
     date = datetime.date.today()
-    date = date - datetime.timedelta(days=1)
+    date = date - datetime.timedelta(days = 4)
     dateArray = []
-    for i in range(0, 14):
+    for i in range(0, 110):
         dateArray.append(date.strftime('%Y%m%d'))
         date = date - datetime.timedelta(days=1)
     return dateArray
@@ -16,16 +16,16 @@ def makeDateArray():
 dateArr = makeDateArray()
 
 addCount = 0
-addArr = []
+# addArr = []
+addressDict = {}
+with open("address.json",'r',encoding='UTF-8') as f:
+    addressDict = json.loads(f.read())
+
 add_dict_arr = []
 # days_arr = []
 
 # Risky areas
-midRisks = ['黄浦区顺昌路612弄12号', '嘉定区马陆镇康年路261号工地宿舍', '崇明区长兴镇长明村21队',
-            '浦东新区北蔡镇联勤村冯桥南宅', '浦东新区日京路88号',
-            '浦东新区北蔡镇鹏飞路411弄6号', '嘉定区江桥镇增建村柴中村民组', '闵行区梅陇镇许泾村八组', '崇明区长兴镇新港村15队',
-            '闵行区梅陇镇行南村三队', '闵行区华漕镇许浦村三队', '浦东新区康桥镇苗桥路935弄19号',
-            '浦东新区御北路235号',]
+midRisks = []
 highRisks = []
 
 # Fix wrong plot locations by replacing the keyword
@@ -58,27 +58,26 @@ fixDict = {
 }
 
 # Parse addresses from txt
-addArr.extend(midRisks)
-addArr.extend(highRisks)
+# addArr.extend(midRisks)
+# addArr.extend(highRisks)
 
-mid_dict_arr = [{"add": address, "date": "", "risk": "mid", "label": str("【中风险】" + address), "opacity": 1} for address in midRisks]
-high_dict_arr = [{"add": address, "date": "", "risk": "high", "label": str("【高风险】" + address), "opacity": 1} for address in highRisks]
-add_dict_arr.extend(mid_dict_arr)
-add_dict_arr.extend(high_dict_arr)
+# mid_dict_arr = [{"add": address, "date": "", "risk": "mid", "label": str("【中风险】" + address), "opacity": 1} for address in midRisks]
+# high_dict_arr = [{"add": address, "date": "", "risk": "high", "label": str("【高风险】" + address), "opacity": 1} for address in highRisks]
+# add_dict_arr.extend(mid_dict_arr)
+# add_dict_arr.extend(high_dict_arr)
 
-
-# mid_dict_arr = [{"add": address, "style": 0, "name": str("【中风险】" + address)} for address in midRisks]
-# high_dict_arr = [{"add": address, "style": 0, "name": str("【高风险】" + address)} for address in highRisks]
-# days_arr.append(mid_dict_arr)
-# days_arr.append(high_dict_arr)
 
 for date in dateArr:
     # one_day_arr = []
-    path = str(date) + '.txt'
+    path = 'txt_by_date/' + str(date) + '.txt'
+
 
     fr = open(path, 'r', encoding='UTF-8')
     data = fr.read()
     passage = data.split('\n')
+
+    geoTaskArr = []
+    todayArr = []
 
     for line in passage:
         matchArr = re.findall(r'于(.*?)区(.*?)[。，]', line, re.M)
@@ -89,20 +88,40 @@ for date in dateArr:
             if addStr in fixDict:
                 addStr = fixDict[addStr]
             print('<li>' + str(addCount) + '. ' + addStr + '</li>')
-            if addStr not in addArr:
-                addArr.append(addStr)
-                date_in_label = " （" + str(date)[4:6] + "-" + str(date)[6:8] + "）"
-                firstDate = datetime.datetime.strptime(dateArr[0], "%Y%m%d")
-                currentDate = datetime.datetime.strptime(date, "%Y%m%d")
-                opacity = 0.85 - (firstDate - currentDate).days * 0.05
-                if opacity == 0.85:
-                    opacity = 1
-                add_dict_arr.append({"add": addStr, "date": str(date), "risk": "none", "label": str(addStr + date_in_label), "opacity": opacity})
-                # one_day_arr.append({"add": addStr, "style": dateArr[0] - date, "name": str(addStr + date_in_label)})
-print(add_dict_arr)
 
-    # days_arr.append(one_day_arr)
+            if addStr not in addressDict.keys():
 
+                date_in_label = " → " + str(int(str(date)[4:6])) + "/" + str(int(str(date)[6:8]))
+                # firstDate = datetime.datetime.strptime(dateArr[0], "%Y%m%d")
+                # currentDate = datetime.datetime.strptime(date, "%Y%m%d")
+                # opacity = 0.85 - (firstDate - currentDate).days * 0.05
+                # if opacity == 0.85:
+                #     opacity = 1                
+                addressDict[addStr] = {"add": addStr, "lastdate": str(date), "name": str(addStr + date_in_label), "count": 1}
+                geoTaskArr.append({"add": addStr, "name": str(addStr + date_in_label)})
+
+            elif "lnglat" in addressDict[addStr].keys():
+                if {"lnglat": addressDict[addStr]["lnglat"], "name": addressDict[addStr]["name"]} not in todayArr:
+                    addressDict[addStr]["count"] += 1
+                    todayArr.append({"lnglat": addressDict[addStr]["lnglat"], "name": addressDict[addStr]["name"]})
+
+    # res = geo.getMassGeoDictArr(geoTaskArr)
+    # for r in res:
+    #     if r["add"] in addressDict.keys():
+    #         addressDict[r["add"]]["lnglat"] = r["lnglat"]
+    #         todayArr.append({"lnglat": r["lnglat"], "name": r["name"]})
+        
+    # addLines = [str(r) + ",\n" for r in todayArr]
+    # # jsonPath = 'positives.js'
+    # jsPath = 'positives_new.js'
+    # with open(jsPath, 'a', encoding='utf-8') as f:
+    #     f.write("positives[\'" + str(date) + "\'] = [\n")
+    #     f.writelines(addLines)
+    #     f.write("]\n")
+    #     f.close()
+    
+    with open('address.json', 'w', encoding='utf-8') as f:
+        f.write(json.dumps(addressDict, ensure_ascii=False))
 
 
 # dateArr = [datetime.datetime.strptime(d, '%Y%m%d').date() for d in dateArr]
@@ -129,30 +148,9 @@ def updateFile(path, midRisks, highRisks):
 
 
 # updateFile('demo.html')
-updateFile('shanghai.html', midRisks, highRisks)
+# updateFile('shanghai.html', midRisks, highRisks)
 
 
-# res = geo.getGeoArr(addArr)
-# jsonPath = 'positions.json'
-# with open(jsonPath, 'w', encoding='utf-8') as f:
-#     json.dump(res, f, ensure_ascii=False)
-#     f.close()
-
-# res = geo.getGeoDictArr(add_dict_arr)
-# jsonPath = 'positions_new.json'
-# with open(jsonPath, 'w', encoding='utf-8') as f:
-#     json.dump(res, f, ensure_ascii=False)
-#     f.close()
-
-res = geo.getMassGeoDictArr(add_dict_arr)
-addLines = [str(r) + ",\n" for r in res]
-jsonPath = 'positives.js'
-with open(jsonPath, 'w', encoding='utf-8') as f:
-    f.write("var positives = [\n")
-    f.writelines(addLines)
-    f.write("]\n")
-    f.close()
-
-
-print(addArr)
-print("共处理" + str(addCount) + "条地址；去重后共计" + str(len(addArr)) + "个地点。")
+with open('count.json', 'w', encoding='utf-8') as f:
+    f.write(json.dumps(addressDict, ensure_ascii=False))
+print("共处理" + str(addCount) + "条地址；去重后共计" + str(len(addressDict)) + "个地点。")
