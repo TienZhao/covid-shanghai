@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>2022上海疫情回顾</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <style>
+        html,
+        body,
+        #container {
+            height: 100%;
+            width: 100%;
+        }
+        /* 地图中的信息标签 */
+        .amap-marker-label {
+            position: absolute;
+            top: 3px;
+            left: 30px;
+            color: black;
+            padding: 4px 10px;
+            box-shadow: 1px 1px 1px rgba(10, 10, 10, .2);
+            white-space: nowrap;
+            font-size: 12px;
+            background-color: #FFFFFF;
+            opacity: 0.8;  
+            border-radius: 3px;
+            border-color: #BBBBBB;
+            border-width: 0.5px;
+            border-radius: 5px;
+        }
+        /* 整个左上角区域的脚手架 */
+        #result{
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            width: 350px;
+            height: auto;
+            /*line-height: 30px;*/
+            text-align: left;
+            background: transparent;
+            border-radius: 7px;
+            z-index: 99;
+            /*background-color: white;*/
+            font-size: small;
+        }
+        #result ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        #result ul li{
+            color: #000;
+            padding: 7px;
+            font-size: 14px;
+            text-align: justify;
+            border-bottom: 1px solid #D3D3D3
+        }
+        #result>div:last-child{
+            display: flex;
+            align-items: center;
+        }
+        /* 按钮下方的文本框 */
+        #noticeDiv{
+            margin-top: 10px;
+            width: 260px;
+            height: auto;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 1px 1px 1px rgba(10, 10, 10, .2);
+        }
+        .noticeText{ 
+            margin: 0px;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            background: #FFFFFF;  
+            opacity: 0.8;  
+            text-align: left; 
+            color: black;   
+            font-size: 12px; 
+            line-height: 20px;         
+        }
+        /* 支持按钮的弹出文本框 */
+        #donateDiv{
+            margin-top: 10px;
+            width: 240px;
+            height: 550px;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .donateText{
+            margin: 0px;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            background: #FFD700;    
+            text-align: center;   
+            line-height: 20px;
+            font-size: 16px;
+            color: black;     
+        }
+        /* 按钮栏 */
+        #buttonRow{
+            width: 100%;
+            background: transparent;
+            display: flex;
+            flex-direction: row;
+        }
+        .btn{
+            width: 80px;
+            height: 35px;
+            color: #000000;
+            border-color: #BBBBBB;
+            font-size: 14px;
+            border-width: 0.5px;
+            border-radius: 5px;
+            background: #FFD700;
+            box-shadow: none;
+            white-space: nowrap;
+            overflow: hidden
+        }
+        .btn:hover{
+            cursor: pointer;
+        }
+        .subbtn{
+            margin-left: 10px;
+            width: 60px;
+            height: 35px;
+            color: #000000;
+            border-color: #BBBBBB;
+            font-size: 14px;
+            border-width: 0.5px;
+            border-radius: 5px;
+            background: #EEEEEE;
+            box-shadow: none;
+            white-space: nowrap;
+            overflow: hidden
+        }
+        /* 滑动输入栏 */
+        .range-box{
+            width: 260px;
+            margin: 10px 0px 0px 0px;
+        }
+        /* background 滑道样式 */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 4px;
+            background: #FFD700;
+            box-shadow: 1px 1px 1px rgba(10, 10, 10, .2);
+        }
+        /* firefox - slider 滑块样式 */
+        input[type=range]::-moz-range-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            background: #EEEEEE;
+            border-radius: 50%;
+            border: none;
+            box-shadow: 1px 1px 1px rgba(10, 10, 10, .2);
+        }
+        /* chrome - slider 滑块样式 */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            background: #EEEEEE;
+            border-radius: 50%;
+            border: none;
+            box-shadow: 1px 1px 1px rgba(10, 10, 10, .2);
+        }        
+        /* 滑块图例样式 */
+        #range-box-legend{
+            margin: 0px 0px 0px 0px;
+            width: 220px;
+            text-align: center;
+            font-size: 12px;
+            color: black;
+            display: flex;
+            justify-content: space-between;
+        }
+        .legend-label{
+            -moz-user-select: -moz-none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div id='container'></div>
+    <div id='result' width='100%'>
+        <div id='buttonRow'>
+            <button onclick='btnPlay()' class='btn' id='btnPlay'>滚动播放</button>
+            <button onclick='btnDonate()' class='subbtn' id='btnDonate'>支持</button>
+            <button onclick='btnShare()' class='subbtn' id='btnShare'>分享</button>
+            <!-- <button onclick='btnPlay()' class='btn'>运行😷</button> -->
+            <!-- <button onclick='btnDonate()' class='subbtn'>🙌</button> -->
+            <!-- <button onclick='btnShare()' class='subbtn'>🔗</button> -->
+        </div>
+        <div id='noticeDiv'>
+            <div class="noticeText" id="noticeText" >
+                <!-- <span>听说顾村的樱花很美</span> -->
+                <!-- <span>它也在赛博空间为你静静绽放</span> -->
+                <span>2022年3月6日新增确诊病例<b>3</b>例，新增无症状感染者<b>45</b>例。</span>
+            </div>            
+        </div>
+        <div id='donateDiv' style="display: none;">
+            <!-- <div class='donateText'>
+                <span><b>在这个茫然的春天</b></span>
+                <span><b>给生活一点盼头</b></span>
+                <span><b>3/30新车间线上开放夜</b></span>
+                <span><b><a href="https://yoopay.cn/event/93875362">点击报名，免费参与</a></b></span>
+            </div> -->
+            <!-- <img src="https://tienzhao.github.io/covid-shanghai/images/event_0330.jpg" width="240"/> -->
+            <div class='donateText'> 
+                <!-- <span><b>❗一本正经❗</b></span> -->
+                <!-- <span>展示的是14天阳性地址</span> -->
+                <!-- <span>不代表封闭地区</span> -->
+                <!-- <span>本站仅供数据可视化学习</span>                -->
+                <!-- <span>完全不保证数据真实准确</span> -->
+                <!-- <span>看看别的：</span> -->
+                <!-- <span><a href="voice20220402.html">【疾控电话】</a>、<a href="voice20220409.html">【疾控敲门】</a>、<a href="video20220422.html">【四月之声】</a></span> -->
+                <!-- <span>本页面仅供数据可视化学习，完全不保证数据真实准确，数据源于上海发布。如果您发现了错误和建议，欢迎<a href="https://wj.qq.com/s2/9880542/aac8/">反馈</a>！</span> -->
+                <span><a href="https://github.com/TienZhao/covid-shanghai">Github Repo</a> | <a href="https://wj.qq.com/s2/9880542/aac8/">意见反馈</a></span>
+                <span><b>打赏十块</b></span>
+                <span><b>给作者投喂鸡腿！</b></span>
+                <!-- <span><b>Donate ￥10</b></span>
+                <span><b>Power our server!</b></span> -->
+                <!-- <span><a href="https://github.com/TienZhao/covid-shanghai">Github Repo</a> | <a href="https://wj.qq.com/s2/9880542/aac8/">意见反馈</a></span> -->
+            </div>
+            <!-- <img src="images/donate2.jpg" width="326"/> -->
+            <img src="https://tienzhao.github.io/covid-shanghai/images/donation2.jpg" width="240"/>
+
+            <div class='donateText'>                
+                <span><b>特别感谢</b></span>
+                <span>这座城市所有的</span>
+                <span>医护人员和防疫人员</span>
+                <span>以及</span>
+                <span>新车间创客空间、</span>
+                <span>@lcb931023、@Erickus、</span>
+                <span>**卿、**明、**宇、*瑶、*靖、*奕、*郑、*椿、*红、**怡、**阳、*悦、**喻、**彤、**越、**依、**嘉、*言、**清、**东、**欣、A*y、*🐒、*昂、*强、*M、*颖、**斌、L*s、E*i、S*e、*𝙮、B*g、**豪、**超、**捷、**健、*绢、*锟、*华、*兴、*枫、*菲、*格、*💞、*妙、**鹏、**敏、**慧、*🍡、*e、*子、*姐、*杭、**涵、**乂、**杰、*凯、*瑾、*赓、*兰、*欣、*羽、*莹、*枫、*）、*刚、*凯、**东、*涛、**赟、**南、**龙、**逸、*叕、T*m、*虹、*飞、**芬、**昊、*权、s*l、*强、*天等朋友们</span>
+                <span><b>对炸鸡服务器的支持！</b></span>
+                <span>还要感谢</span>
+                <span>上海奉贤、上海徐汇、上海长宁、浦东发布、上海静安、上海嘉定、上海虹口、上海黄浦、上海松江、上海普陀、i金山、今日闵行、上海杨浦、上海崇明、绿色青浦、上海宝山微信公众平台提供数据支持！</span>
+                <span><b>我们❤️上海！</b></span>
+            </div>
+        </div>
+        <!-- 滑块 -->
+        <div class="range-box">
+            <input type="range" id="dateRange" min="0" max="109" step="1" value="0" oninput="sliderChange(event)" onchange="sliderChange(event)" >
+        </div>
+        <div id="range-box-legend">
+            <div class="legend-label">三月</div>
+            <div class="legend-label">四月</div>
+            <div class="legend-label">五月</div>
+            <div class="legend-label">六月</div>
+        </div>
+    </div>
+    <!-- 流量统计 -->
+    <script async src="https://static.getclicky.com/101358038.js"></script>
+    <noscript><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/101358038ns.gif" /></noscript>
+    <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode:'44947b774bfbf1c390bc98539582d54b',
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.15&key=3c7d273d58c66c01fb9549449af5684e&plugin=AMap.Geocoder"></script>
+    <!-- 数据JS -->
+    <script type="text/javascript" src='positives_new.js'></script>
+    <script type="text/javascript" src='stats.js'></script>
+    <!-- 页面JS -->
+    <script type="text/javascript">
+        // 地图初始化
+        var map = new AMap.Map("container", {
+            resizeEnable: true,
+            center: [121.5, 31.25],
+            zoom: 11
+        });
+        map.on('zoomend', mapZoomend);
+        var zoom = map.getZoom();
+
+        // 支持按钮事件：弹出/隐藏文本框
+        function btnDonate(){
+            let noticeDiv = document.getElementById('noticeDiv');
+            let donateDiv = document.getElementById('donateDiv');
+            noticeDiv.style["display"] = noticeDiv.style["display"] == 'none'? 'flex' : 'none';
+            donateDiv.style["display"] = noticeDiv.style["display"] == 'none'? 'flex' : 'none';
+            let btnDonate = document.getElementById('btnDonate');
+            btnDonate.innerHTML = noticeDiv.style["display"] == 'none'? '隐藏' : '支持';
+        }
+        
+        //分享按钮事件：链接复制到剪贴板
+        function btnShare(){
+            let transfer = document.createElement('input');
+            document.body.appendChild(transfer);
+            transfer.value = "上海疫情地图 \nhttps://tienzhao.github.io/covid-shanghai/index.html?from=share";
+            transfer.focus();
+            transfer.select();
+            if (document.execCommand('copy')) {
+                document.execCommand('copy');
+                alert("复制成功，赶紧发给好友吧！");
+            }
+            transfer.blur();
+            document.body.removeChild(transfer);
+        }
+        
+        // 播放按钮事件：按照日期滚动播放每日新增病例地址，同时设置滑块的值
+        var playing = false;
+        var interval;
+        function btnPlay(){
+            let btnPlay = document.getElementById('btnPlay');
+            if (!playing){
+                playing = true;
+                if(btnPlay.innerHTML == '滚动播放'){
+                    btnPlay.innerHTML = '停止播放';
+                }
+                interval = setInterval(function(){ 
+                    //this code runs every second 
+                    let dateRange = document.getElementById("dateRange");
+                    currentValue = parseInt(dateRange.value)
+                    maxValue = parseInt(dateRange.max)
+                    if (currentValue < maxValue) {
+                        dateRange.value = currentValue + 1;
+                        sliderChange();
+                        // console.log(dateRange.value, dateRange.max)
+                    } else {
+                        dateRange.value = 0;
+                        sliderChange();
+                        // console.log(dateRange.value, dateRange.max)
+                    }
+                }, 800);
+            } else {
+                playing = false;
+                if(btnPlay.innerHTML == '停止播放'){
+                    btnPlay.innerHTML = '滚动播放';
+                }
+                clearInterval(interval);
+            }            
+        }
+
+        // 滑块事件：滑动滑块时更新地图和统计数据
+        function sliderChange(){
+            // 从滑块中获取值
+            var dateRange = document.getElementById("dateRange");
+            var deltaDays = dateRange.value;
+
+            // 计算滑块对应的"YYYYMMDD"日期
+            let date = new Date('2022-03-06');
+            date.setDate(date.getDate() + parseInt(deltaDays));
+            sliderDate = date.toISOString().substring(0, 4) + date.toISOString().substring(5, 7) + date.toISOString().substring(8, 10);
+            console.log(deltaDays, date);
+
+            // 将日期和统计数据更新到信息栏
+            let month = parseInt(sliderDate.substring(4, 6));
+            let day = parseInt(sliderDate.substring(6, 8));
+            let new_patient = stats[sliderDate]['new_patient'];
+            let new_asymptom = stats[sliderDate]['new_asymptom'];
+            let new_patient_from_asymptom = stats[sliderDate]['new_patient_from_asymptom'];
+            let text = '<span>2022年' + month + '月' + day + '日新增确诊病例<b>' + new_patient + '</b>例，'
+            if (new_patient_from_asymptom){
+                text += '包含' + new_patient_from_asymptom + '例既往无症状感染者转归，';
+            }
+            text += '新增无症状感染者<b>' + new_asymptom + '</b>例。</span>';
+            let noticeText = document.getElementById('noticeText');
+            noticeText.innerHTML = text;
+
+            // 使用Amap海量点在地图标记当日阳性病例地址
+            mass.clear();
+            mass.setData(positives[sliderDate]);
+            var marker = new AMap.Marker({content: ' ', map: map});
+            mass.setMap(map);
+        }
+
+        // 客户端定位控件
+        AMap.plugin('AMap.Geolocation', function() {
+            var geolocation = new AMap.Geolocation({
+                enableHighAccuracy: true,               //使用高精度定位
+                buttonPosition:'LT',                    //定位按钮的停靠位置
+                buttonOffset: new AMap.Pixel(240, 10),  //定位按钮与设置的停靠位置的偏移量
+                zoomToAccuracy: true,                   //定位成功后是否自动调整地图视野到定位点
+            });
+            map.addControl(geolocation);        
+        });
+
+        // 初始化页面信息
+        var addressAllow = true;
+        var addressOnDisplay = false;
+        var sliderDate = "20220306";
+        // 初始化海量点
+        var massData = positives[sliderDate]
+        var style = [{
+            url: 'images/mask.png',
+            anchor: new AMap.Pixel(9, 9),
+            size: new AMap.Size(17, 17)
+        }];
+        var mass = new AMap.MassMarks(massData, {
+                opacity: 1,
+                zIndex: 111,
+                cursor: 'pointer',
+                style: style
+            });
+        
+        // 设置地图上的位置信息标签，点击显示
+        var marker = new AMap.Marker({content: ' ', map: map});
+        mass.on('mouseover', function (e) {
+            marker.setPosition(e.data.lnglat);
+            marker.setLabel({content: e.data.name})
+        });
+        mass.on('touchstart', function (e) {
+            marker.setPosition(e.data.lnglat);
+            marker.setLabel({content: e.data.name})
+        });
+
+        mass.setMap(map);
+
+        // 监听鼠标滚轮结束事件
+        function mapZoomend(){
+            zoom = map.getZoom()
+            let markerElements = document.getElementsByClassName("marker");
+            if (zoom < 16 && !addressAllow){
+                if (addressOnDisplay){
+                    addressOnDisplay = false; 
+                    for(let m = 0; m < markerElements.length; m++) {
+                        markerElements[m].style["display"] = "none";
+                    }
+                }
+            } else if (zoom >= 16 && addressAllow) {
+                if (!addressOnDisplay){
+                    addressOnDisplay = true; 
+                    for(let m = 0; m < markerElements.length; m++) {
+                        markerElements[m].style["display"] = "block";
+                    }
+                }                
+            }
+        }
+
+        // 为了网络安全，避免API滥用
+        // 参考：https://www.cnblogs.com/moluy/p/14085173.html
+        function destroyMap() {
+            console.log('为了避免API滥用，本网页禁止控制台调试。\n你也会开发？一起为上海做贡献！\nhttps://github.com/TienZhao/covid-shanghai/')
+            map && map.destroy();
+            AMap = null;
+        }
+        //禁止F12键盘事件
+        document.addEventListener('keydown', function(event){
+           return 123 != event.keyCode || (event.returnValue = false)
+        });
+        //禁止右键、选择、复制
+        document.addEventListener('contextmenu', function(event){
+           return event.returnValue = false
+        })
+        //检测控制台高度变化
+        function resize(){
+            var threshold = 200;
+            var widthThreshold = window.outerWidth - window.innerWidth > threshold;
+            var heightThreshold = window.outerHeight - window.innerHeight > threshold;
+            if(widthThreshold || heightThreshold){
+                destroyMap();
+            }
+        }
+        window.addEventListener('resize', resize);
+        resize()
+        // //监听toString方法和dom属性
+        // var observerConsole = {
+        //     openCallback: function(){
+        //         destroyMap();
+        //         try {
+        //             window.open("about:blank", "_self")
+        //         } catch(e) {
+        //             var btn = document.createElement("button");
+        //             btn.onclick = function() {
+        //                 window.open("about:blank", "_self")
+        //             }
+        //             btn.click()
+        //         }
+        //     },
+        //     observer: function(){
+        //         //这里使用dom元素，在打开控制台时才会计算id
+        //         var dom = document.createElement("div"), that = this;
+        //         Object.defineProperty(dom, "id", {
+        //             get: function(){
+        //                 that.openCallback()
+        //             }
+        //         })
+        //         //ie不支持console.table
+        //         //console.info(dom);
+        //         console.log(dom);
+        //     },
+        //     observerF: function(){
+        //         var obj = Object.create(null), t = Date.now(), that = this;
+        //         Object.defineProperty(obj, "a", {
+        //             get: function() {
+        //                 if(Date.now() - t > 100){
+        //                     that.openCallback()
+        //                 }
+        //             }
+        //         })
+        //         setInterval(function(){
+        //             t = Date.now();
+        //             (function(){})["constructor"]("debugger")();//debugger;
+        //             console.log(obj.a);
+        //         }, 200)
+        //     },
+        //     init: function(){
+        //         var t = window.navigator.userAgent.toLowerCase();
+        //         t.indexOf("firefox") >= 0 ? this.observerF() : this.observer();
+        //     }
+        // }
+        // observerConsole.init();
+
+//     </script>
+// </body>
+// </html>
+
